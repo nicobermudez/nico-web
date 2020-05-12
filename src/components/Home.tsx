@@ -7,16 +7,14 @@ import { Scroll } from "./Scroll";
 const HomeContainer = styled.div({
     backgroundColor: "#16181d",
     minHeight: "100vh",
-    width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    position: "relative",
     fontFamily: "sans-serif",
+    position: "relative",
 });
 
 export const Home: React.FC = () => {
-    const [enter, setEnter] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,10 +28,10 @@ export const Home: React.FC = () => {
         <HomeContainer>
             {loading 
                 ? <Loading />
-                : <div>
+                : <>
                     <Intro />
                     <Scroll />
-                </div>
+                </>
             }
         </HomeContainer>
     );
