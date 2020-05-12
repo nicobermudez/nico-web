@@ -1,19 +1,20 @@
 import styled from "@emotion/styled";
 import React from "react";
 import profile from "../assets/nico.jpeg";
+import { Scroll } from "./Scroll";
 
-const IntroContainer = styled.div({
+const TextContainer = styled.div({
     transform: "rotate(-8deg)",
     transformOrigin: "50% 50%",
 });
 
 const HomeText = styled.div({
-    transform: "matrix(1, 0, 0, 1, 0, 0)",
     fontWeight: 700,
     fontSize: 128,
     textTransform: "uppercase",
     whiteSpace: "nowrap",
     letterSpacing: 8,
+    position: "absolute",
 });
 
 const ImageContainer = styled.div({
@@ -32,7 +33,6 @@ export const Intro: React.FC = () => (
         <ImageContainer>
             <div
                 style={{
-                    transform: "matrix(1, 0, 0, 1, 0, 0)",
                     zIndex: 1,
                 }}
             >
@@ -49,7 +49,7 @@ export const Intro: React.FC = () => (
                 />
             </div>
         </ImageContainer>
-        <IntroContainer>
+        <TextContainer>
             <HomeText
                 style={{
                     bottom: 0,
@@ -60,6 +60,8 @@ export const Intro: React.FC = () => (
             >
                 Hello&thinsp;Ciao&thinsp;Hola&thinsp;Hello&thinsp;Ciao&thinsp;Hola&thinsp;
             </HomeText>
+        </TextContainer>
+        <TextContainer>
             <HomeText
                 style={{
                     top: 0,
@@ -71,6 +73,7 @@ export const Intro: React.FC = () => (
             >
                 Hello&thinsp;Ciao&thinsp;Hola&thinsp;Hello&thinsp;Ciao&thinsp;Hola&thinsp;
             </HomeText>
-        </IntroContainer>
+        </TextContainer>
+        <Scroll />
     </>
 );

@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React, { useState, useEffect } from "react";
 import { Loading } from "./Loading";
 import { Intro } from "./Intro";
-import { Scroll } from "./Scroll";
 
 const HomeContainer = styled.div({
     backgroundColor: "#16181d",
@@ -12,6 +11,7 @@ const HomeContainer = styled.div({
     alignItems: "center",
     fontFamily: "sans-serif",
     position: "relative",
+    overflow: "hidden",
 });
 
 export const Home: React.FC = () => {
@@ -28,10 +28,7 @@ export const Home: React.FC = () => {
         <HomeContainer>
             {loading 
                 ? <Loading />
-                : <>
-                    <Intro />
-                    <Scroll />
-                </>
+                : <Intro />
             }
         </HomeContainer>
     );
