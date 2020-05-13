@@ -1,18 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useState, useEffect } from "react";
 import { Loading } from "./Loading";
 import { Intro } from "./Intro";
-
-const HomeContainer = styled.div({
-    backgroundColor: "#16181d",
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "sans-serif",
-    position: "relative",
-    overflow: "hidden",
-});
+import { About } from "./About";
 
 export const Home: React.FC = () => {
     const [loading, setLoading] = useState(true);
@@ -25,11 +14,14 @@ export const Home: React.FC = () => {
     }, []);
 
     return (
-        <HomeContainer>
+        <>
             {loading 
                 ? <Loading />
-                : <Intro />
+                : <>
+                    <Intro />
+                    <About />
+                </>
             }
-        </HomeContainer>
+        </>
     );
 };

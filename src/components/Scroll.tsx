@@ -10,6 +10,7 @@ const ScrollContainer = styled.div({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    cursor: "pointer",
 });
 
 const Text = styled.div({
