@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colors } from "../constants/colors";
+import { mediaQueries } from "../constants/media-queries";
 
 const FooterContainer = styled.div({
-    position: "fixed",
+    position: "absolute",
     top: 64,
     left: 64,
     color: colors.white,
@@ -11,6 +12,9 @@ const FooterContainer = styled.div({
     justifyContent: "space-around",
     textTransform: "uppercase",
     fontFamily: "sans-serif",
+    [mediaQueries.md]: {
+        position: "fixed",
+    },
 });
 
 const Link = styled.a({

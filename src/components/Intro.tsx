@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import profile from "../assets/nico.jpeg";
 import { Scroll } from "./Scroll";
+import { mediaQueries } from "../constants/media-queries";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const IntroContainer = styled.div({
     backgroundColor: "#16181d",
@@ -22,11 +24,14 @@ const TextContainer = styled.div({
 
 const HomeText = styled.div({
     fontWeight: 700,
-    fontSize: 128,
+    fontSize: 32,
     textTransform: "uppercase",
     whiteSpace: "nowrap",
     letterSpacing: 8,
     position: "absolute",
+    [mediaQueries.md]: {
+        fontSize: 128,
+    },
 });
 
 const ImageContainer = styled.div({
@@ -46,7 +51,7 @@ const AnimatedImage = styled(animated.div)({
 });
 
 const ProfileImage = styled.img({
-    width: "40%",
+    width: "90%",
     display: "block",
     height: "auto",
     margin: "auto",
@@ -54,17 +59,26 @@ const ProfileImage = styled.img({
     "&:hover": {
         boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
     },
+    [mediaQueries.md]: {
+        width: "40%",
+    },
 })
 
 
 export const Intro: React.FC = () => {
-    const [isScrollVisible] = useState(true);
+    const [isScrollVisible, setScrollVisible] = useState(true);
     const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }));
     const calc = (x: any, y: any) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1];
     const trans = (x: any, y: any, s: any) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
+    useScrollPosition(({ currPos }) => {
+        currPos.y === 0 
+            ? setScrollVisible(true)
+            : setScrollVisible(false);
+    });
+
     return (
-        <IntroContainer onScroll={(e) => console.log("HELLO")}>
+        <IntroContainer>
             <ImageContainer>
                 <div style={{ zIndex: 1 }}>
                     <AnimatedImage
@@ -101,7 +115,7 @@ export const Intro: React.FC = () => {
                     Hola&thinsp;Ciao&thinsp;Hello&thinsp;Hola&thinsp;Ciao&thinsp;Hello&thinsp;
                 </HomeText>
             </TextContainer>
-            {isScrollVisible && <Scroll />}
+            {isScrollVisible && <Scroll setScrollVisible={setScrollVisible} />}
         </IntroContainer>
     );
 };
