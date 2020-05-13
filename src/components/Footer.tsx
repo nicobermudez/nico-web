@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { colors } from "../constants/colors";
 
 const FooterContainer = styled.div({
     position: "fixed",
     top: 64,
     left: 64,
-    color: "white",
+    color: colors.white,
     display: "flex",
     justifyContent: "space-around",
     textTransform: "uppercase",
@@ -16,7 +17,7 @@ const Link = styled.a({
     marginRight: 16,
     cursor: "pointer",
     textDecoration: "none",
-    color: "white",
+    color: colors.white,
 });
 
 export const Footer: React.FC = () => (

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import { colors } from "../constants/colors";
 
 const ScrollContainer = styled.div({
     position: "absolute",
@@ -15,7 +16,7 @@ const ScrollContainer = styled.div({
 
 const Text = styled.div({
     marginBottom: 32,
-    color: "lightblue",
+    color: colors.themeLight,
     fontSize: 24,
     fontWeight: 700,
     letterSpacing: 8,
@@ -23,9 +24,9 @@ const Text = styled.div({
 
 const Pipe = styled(animated.div)({
     width: 0,
-    borderLeft: "0.1rem solid lightblue",
+    borderLeft: `0.1rem solid ${colors.themeLight}`,
     height: "5.5rem",
-    backgroundColor: "white",
+    backgroundColor: colors.white,
 });
 
 export const Scroll: React.FC = () => {

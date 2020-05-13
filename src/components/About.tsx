@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { colors } from "../constants/colors";
 
 const AboutContainer = styled.div({
     backgroundColor: "#16181d",
     alignItems: "center",
     fontFamily: "sans-serif",
-    color: "white",
+    color: colors.white,
     padding: "10vh 29vw 20vh 30vw",
     fontSize: 24,
     lineHeight: "3rem",
@@ -13,7 +14,7 @@ const AboutContainer = styled.div({
 });
 
 const Link = styled.a({
-    color: "lightblue",
+    color: colors.themeLight,
     textDecoration: "none",
     cursor: "pointer",
     fontWeight: "bold",

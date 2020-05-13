@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { colors } from "../constants/colors";
 import "./loading.scss";
 
 const LoadingContainer = styled.div({
-    backgroundColor: "#16181d",
+    backgroundColor: colors.themeDark,
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",

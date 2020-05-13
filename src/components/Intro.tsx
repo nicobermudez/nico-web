@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import profile from "../assets/nico.jpeg";
 import { Scroll } from "./Scroll";
@@ -58,21 +58,10 @@ const ProfileImage = styled.img({
 
 
 export const Intro: React.FC = () => {
-    const [isScrollVisible, setScrollVisible] = useState(true);
+    const [isScrollVisible] = useState(true);
     const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }));
     const calc = (x: any, y: any) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1];
     const trans = (x: any, y: any, s: any) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
-
-    // const handleScroll = useCallback(() => {
-    //     if (document.body.scrollTop === 0) {
-    //         setScrollVisible(true);
-    //     }
-    //     isScrollVisible && setScrollVisible(false);
-    // }, []);
-
-    // useEffect(() => {
-    //     window.addEventListener("scroll", handleScroll);
-    // }, [handleScroll]);
 
     return (
         <IntroContainer onScroll={(e) => console.log("HELLO")}>
