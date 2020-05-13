@@ -12,21 +12,26 @@ const AboutContainer = styled.div({
     letterSpacing: "0.02rem",
 });
 
+const Link = styled.a({
+    color: "lightblue",
+    textDecoration: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+});
+
 export const About: React.FC = () => {
     return (
         <AboutContainer>
-            Hello! I am a son, brother, friend, and student. 
-            I am an adventurer, an athlete, a visual artist, and an innovator; 
-            A lover of life. I aim to inspire others to open their minds, to travel, 
-            to think beyond any limits, to take chances, and to create.
-            Every idea I encounter begins with one simple question: "why?" 
-            When we begin to question everything around us and everything within us, 
-            we start to understand that the complexity of our society is merely built upon the questions we ask. 
-            When we ask these questions daily, we begin to disrupt our own habits, challenge ourselves, 
-            grow, and learn like never before. Never stop questioning...
-            If you ever want to grab coffee or chat about business, the cosmos, life, 
-            technology, or whatever crazy topic you can think of, 
-            feel free to send me a message via LinkedIn or email me at bermnicolas@gmail.com. 
+            Hello, my name is Nico Bermudez. I am a creative software engineer, thinker, and aspiring entrepreneur. 
+            In a previous life, I studied Finance at <Link target="_blank" href="http://www.bu.edu/questrom/">Boston University</Link>. 
+            and worked in Sales at <Link target="_blank" href="https://www.intuit.com/company/">Intuit </Link> and 
+            <Link target="_blank" href="https://www.salesforce.com/company/about-us/"> Salesforce</Link>. 
+            Currently, I'm an adventurer, athlete, innovator, a lover of life. I aim to inspire others to open their minds, to travel, 
+            to think beyond any limits, to take chances, and to create. Oh, and I'm also a Software Engineer at 
+            <Link target="_blank" href="https://www.goaheadtours.com/"> EF Go Ahead Tours</Link>.
+            If you ever want to grab coffee or chat about coding, the cosmos, life,
+            business, or whatever crazy topic you can think of,
+            feel free to send me a message via LinkedIn or email me below.
         </AboutContainer>
     );
 };

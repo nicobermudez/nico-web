@@ -97,7 +97,7 @@ export const Intro: React.FC = () => {
                         left: "-60vw",
                     }}
                 >
-                    Hello&thinsp;Ciao&thinsp;Hola&thinsp;Hello&thinsp;Ciao&thinsp;Hola&thinsp;
+                    Hola&thinsp;Ciao&thinsp;Hello&thinsp;Hola&thinsp;Ciao&thinsp;Hello&thinsp;
                 </HomeText>
             </TextContainer>
             <TextContainer style={{ zIndex: 2 }}>
@@ -109,7 +109,7 @@ export const Intro: React.FC = () => {
                         left: "-55vw",
                     }}
                 >
-                    Hello&thinsp;Ciao&thinsp;Hola&thinsp;Hello&thinsp;Ciao&thinsp;Hola&thinsp;
+                    Hola&thinsp;Ciao&thinsp;Hello&thinsp;Hola&thinsp;Ciao&thinsp;Hello&thinsp;
                 </HomeText>
             </TextContainer>
             {isScrollVisible && <Scroll />}
