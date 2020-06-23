@@ -7,6 +7,9 @@ import { FiCornerDownRight } from "react-icons/fi";
 const EmailContainer = styled.div({
     textAlign: "center",
     margin: "0 16px 128px 16px",
+    [mediaQueries.md]: {
+        margin: "0 16px 256px 16px",
+    },
 });
 
 const Link = styled.a({
