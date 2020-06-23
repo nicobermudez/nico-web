@@ -5,8 +5,8 @@ import { mediaQueries } from "../constants/media-queries";
 
 const FooterContainer = styled.div({
     position: "absolute",
-    top: 64,
-    left: 64,
+    top: 32,
+    left: 32,
     color: colors.white,
     display: "flex",
     justifyContent: "space-around",
@@ -14,6 +14,8 @@ const FooterContainer = styled.div({
     fontFamily: "sans-serif",
     [mediaQueries.md]: {
         position: "fixed",
+        top: 64,
+        left: 64,
     },
 });
 

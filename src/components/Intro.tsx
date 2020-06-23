@@ -39,7 +39,7 @@ const ImageContainer = styled.div({
     top: 0,
     left: 0,
     height: "100%",
-    maxWidth: "100%",
+    width: "100vw",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -51,19 +51,18 @@ const AnimatedImage = styled(animated.div)({
 });
 
 const ProfileImage = styled.img({
-    width: "90%",
     display: "block",
     height: "auto",
-    margin: "auto",
+    maxWidth: "calc(100vw - 64px)",
+    margin: "0 32px",
     boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.3)",
     "&:hover": {
         boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
     },
     [mediaQueries.md]: {
-        width: "40%",
+        maxWidth: "calc(50vw - 64px)",
     },
-})
-
+});
 
 export const Intro: React.FC = () => {
     const [isScrollVisible, setScrollVisible] = useState(true);
@@ -72,7 +71,7 @@ export const Intro: React.FC = () => {
     const trans = (x: any, y: any, s: any) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
     useScrollPosition(({ currPos }) => {
-        currPos.y === 0 
+        currPos.y === 0
             ? setScrollVisible(true)
             : setScrollVisible(false);
     });
