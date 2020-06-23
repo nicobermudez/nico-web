@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import profile from "../assets/nico.jpeg";
+import profileImage from "../assets/nico.jpeg";
+import mobileProfileImage from "../assets/nico-mobile.jpeg";
 import { Scroll } from "./Scroll";
 import { mediaQueries } from "../constants/media-queries";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
@@ -46,11 +47,28 @@ const ImageContainer = styled.div({
 });
 
 const AnimatedImage = styled(animated.div)({
-    backgroundImage: profile,
+    backgroundImage: profileImage,
     willChange: "transform",
 });
 
 const ProfileImage = styled.img({
+    display: "none",
+    height: "auto",
+    maxWidth: "calc(100vw - 64px)",
+    margin: "0 32px",
+    boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.3)",
+    "&:hover": {
+        boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
+    },
+    [mediaQueries.sm]: {
+        display: "block",
+    },
+    [mediaQueries.md]: {
+        maxWidth: "calc(60vw - 64px)",
+    },
+});
+
+const ProfileImageMobile = styled.img({
     display: "block",
     height: "auto",
     maxWidth: "calc(100vw - 64px)",
@@ -59,8 +77,11 @@ const ProfileImage = styled.img({
     "&:hover": {
         boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
     },
+    [mediaQueries.sm]: {
+        display: "none",
+    },
     [mediaQueries.md]: {
-        maxWidth: "calc(50vw - 64px)",
+        maxWidth: "calc(60vw - 64px)",
     },
 });
 
@@ -87,7 +108,8 @@ export const Intro: React.FC = () => {
                         onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
                         onMouseLeave={() => set({ xys: [0, 0, 1] })}
                     >
-                        <ProfileImage src={profile} />
+                        <ProfileImage src={profileImage} />
+                        <ProfileImageMobile src={mobileProfileImage} />
                     </AnimatedImage>
                 </div>
             </ImageContainer>
