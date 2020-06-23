@@ -3,15 +3,14 @@ import { Home } from "../src/components/Home";
 import * as firebase from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAlVcgEaiBP1fK4kDB__Mej8vhvIqwh5i4",
-    authDomain: "nico-personal-web.firebaseapp.com",
-    databaseURL: "https://nico-personal-web.firebaseio.com",
-    projectId: "nico-personal-web",
-    storageBucket: "nico-personal-web.appspot.com",
-    messagingSenderId: "642317698683",
-    appId: "1:642317698683:web:b723d1b8cd767cee0304de",
-    measurementId: "G-KH38C4RK9B"
-  };
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
+};
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
