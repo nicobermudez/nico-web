@@ -12,6 +12,7 @@ const FooterContainer = styled.div({
     justifyContent: "space-around",
     textTransform: "uppercase",
     fontFamily: "sans-serif",
+    zIndex: 2,
     [mediaQueries.md]: {
         position: "fixed",
         top: 64,

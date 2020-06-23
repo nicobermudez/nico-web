@@ -2,32 +2,40 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useSpring, animated } from "react-spring";
 import { colors } from "../constants/colors";
+import { mediaQueries } from "../constants/media-queries";
 // eslint-disable-next-line
 import ScrollChor from "react-scrollchor";
 
 const ScrollContainer = styled.div({
     position: "absolute",
     top: "calc((var(--vh, 1vh) * 100) - 8.2rem)",
-    left: "calc(50vw - 5rem)",
+    left: "calc(50vw - 3.5rem)",
     textTransform: "uppercase",
-    display: "flex",
+    display: "none",
     flexDirection: "column",
     alignItems: "center",
     cursor: "pointer",
+    [mediaQueries.md]: {
+        left: "calc(50vw - 5rem)",
+        display: "flex",
+    },
 });
 
 const Text = styled.div({
     marginBottom: 32,
     color: colors.themeLight,
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 700,
     letterSpacing: 8,
+    [mediaQueries.md]: {
+        fontSize: 24,
+    },
 });
 
 const Pipe = styled(animated.div)({
     width: 0,
     borderLeft: `0.1rem solid ${colors.themeLight}`,
-    height: "5.5rem",
+    height: "3.5rem",
     backgroundColor: colors.white,
 });
 

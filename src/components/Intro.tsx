@@ -16,6 +16,10 @@ const IntroContainer = styled.div({
     fontFamily: "sans-serif",
     position: "relative",
     overflow: "hidden",
+    paddingTop: 16,
+    [mediaQueries.md]: {
+        paddingTop: 0,
+    },
 });
 
 const TextContainer = styled.div({
