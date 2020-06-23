@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Loading } from "./Loading";
-import { Intro } from "./Intro";
 import { About } from "./About";
+import { Email } from "./Email";
 import { Footer } from "./Footer";
+import { Intro } from "./Intro";
 
 export const Home: React.FC = () => {
     const [loading, setLoading] = useState(true);
@@ -16,12 +17,13 @@ export const Home: React.FC = () => {
 
     return (
         <>
-            {loading 
+            {loading
                 ? <Loading />
                 : <div style={{ position: "relative" }}>
                     <Intro />
                     <About />
                     <Footer />
+                    <Email />
                 </div>
             }
         </>

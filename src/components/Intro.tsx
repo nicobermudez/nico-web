@@ -57,15 +57,15 @@ const AnimatedImage = styled(animated.div)({
 
 const ProfileImage = styled.img({
     display: "none",
-    height: "auto",
-    maxWidth: "calc(100vw - 64px)",
-    margin: "0 32px",
-    boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.3)",
-    "&:hover": {
-        boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
-    },
     [mediaQueries.sm]: {
         display: "block",
+        height: "auto",
+        maxWidth: "calc(100vw - 64px)",
+        margin: "0 32px",
+        boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.3)",
+        "&:hover": {
+            boxShadow: "0px 30px 100px -10px rgba(0, 0, 0, 0.4)",
+        },
     },
     [mediaQueries.md]: {
         maxWidth: "calc(60vw - 64px)",
@@ -83,9 +83,6 @@ const ProfileImageMobile = styled.img({
     },
     [mediaQueries.sm]: {
         display: "none",
-    },
-    [mediaQueries.md]: {
-        maxWidth: "calc(60vw - 64px)",
     },
 });
 
