@@ -1,6 +1,5 @@
 ## nicobermudez.co
-
-In the project directory, you can run:
+Welcome to my personal website! In the project directory, you can run:
 
 ### `npm run dev`
 
@@ -20,3 +19,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+## Deployment
+1. Run `npm run build`
+2. Run `firebase deploy`

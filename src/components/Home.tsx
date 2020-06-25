@@ -4,7 +4,6 @@ import { About } from "./About";
 import { Email } from "./Email";
 import { Footer } from "./Footer";
 import { Intro } from "./Intro";
-import firebase from "firebase";
 
 export const Home: React.FC = () => {
     const [loading, setLoading] = useState(true);
@@ -16,7 +15,6 @@ export const Home: React.FC = () => {
           return () => clearTimeout(timer);
     }, []);
 
-    firebase.analytics().logEvent('notification_received');
 
     return (
         <>

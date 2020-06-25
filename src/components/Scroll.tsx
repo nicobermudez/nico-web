@@ -3,7 +3,6 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import { colors } from "../constants/colors";
 import { mediaQueries } from "../constants/media-queries";
-// eslint-disable-next-line
 import ScrollChor from "react-scrollchor";
 
 const ScrollContainer = styled.div({
