@@ -1,6 +1,6 @@
 import React from 'react';
 import { Home } from "../src/components/Home";
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
