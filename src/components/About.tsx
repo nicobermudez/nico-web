@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colors } from "../constants/colors";
-import { mediaQueries } from "../constants/media-queries";
+import { colors } from "src/constants/colors";
+import { mediaQueries } from "src/constants/media-queries";
 
 const AboutContainer = styled.div({
     backgroundColor: "#16181d",
     alignItems: "center",
     fontFamily: "sans-serif",
     color: colors.white,
-    padding: "10vh 16px 5vh 16px",
+    padding: 32,
     fontSize: 18,
     lineHeight: "3rem",
     letterSpacing: "0.02rem",

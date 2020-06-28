@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import profileImage from "../assets/nico.jpeg";
-import mobileProfileImage from "../assets/nico-mobile.jpeg";
+import profileImage from "src/assets/nico.jpeg";
+import mobileProfileImage from "src/assets/nico-mobile.jpeg";
+import { mediaQueries } from "src/constants/media-queries";
 import { Scroll } from "./Scroll";
-import { mediaQueries } from "../constants/media-queries";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const IntroContainer = styled.div({
     backgroundColor: "#16181d",

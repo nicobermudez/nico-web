@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useSpring, animated } from "react-spring";
-import { colors } from "../constants/colors";
-import { mediaQueries } from "../constants/media-queries";
 import ScrollChor from "react-scrollchor";
+import { useSpring, animated } from "react-spring";
+import { colors } from "src/constants/colors";
+import { mediaQueries } from "src/constants/media-queries";
 
 const ScrollContainer = styled.div({
     position: "absolute",
