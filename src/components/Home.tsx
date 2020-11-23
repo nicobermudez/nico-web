@@ -1,9 +1,15 @@
+import styled from "@emotion/styled";
 import React, { useState, useEffect } from "react";
 import { Loading } from "./Loading";
 import { About } from "./About";
 import { Email } from "./Email";
-import { Footer } from "./Footer";
+import { Links } from "./Links";
 import { Intro } from "./Intro";
+
+const Wrapper = styled.div({
+    fontFamily: "sans-serif",
+    position: "relative",
+});
 
 export const Home: React.FC = () => {
     const [loading, setLoading] = useState(true);
@@ -20,12 +26,12 @@ export const Home: React.FC = () => {
         <>
             {loading
                 ? <Loading />
-                : <div style={{ position: "relative" }}>
+                : <Wrapper>
                     <Intro />
                     <About />
-                    <Footer />
+                    <Links />
                     <Email />
-                </div>
+                </Wrapper>
             }
         </>
     );

@@ -4,16 +4,16 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import profileImage from "src/assets/nico.jpeg";
 import mobileProfileImage from "src/assets/nico-mobile.jpeg";
+import { colors } from "src/constants/colors";
 import { mediaQueries } from "src/constants/media-queries";
 import { Scroll } from "./Scroll";
 
 const IntroContainer = styled.div({
-    backgroundColor: "#16181d",
+    backgroundColor: colors.themeDark,
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontFamily: "sans-serif",
     position: "relative",
     overflow: "hidden",
     paddingTop: 16,
@@ -53,6 +53,7 @@ const ImageContainer = styled.div({
 const AnimatedImage = styled(animated.div)({
     backgroundImage: profileImage,
     willChange: "transform",
+    zIndex: 1,
 });
 
 const ProfileImage = styled.img({
@@ -93,7 +94,7 @@ export const Intro: React.FC = () => {
     const trans = (x: any, y: any, s: any) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
     useScrollPosition(({ currPos }) => {
-        currPos.y === 0
+        currPos.y >= 0
             ? setScrollVisible(true)
             : setScrollVisible(false);
     });
@@ -101,18 +102,16 @@ export const Intro: React.FC = () => {
     return (
         <IntroContainer>
             <ImageContainer>
-                <div style={{ zIndex: 1 }}>
-                    <AnimatedImage
-                        style={{
-                            transform: props.xys.interpolate(trans as any),
-                        }}
-                        onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-                        onMouseLeave={() => set({ xys: [0, 0, 1] })}
-                    >
-                        <ProfileImage src={profileImage} />
-                        <ProfileImageMobile src={mobileProfileImage} />
-                    </AnimatedImage>
-                </div>
+                <AnimatedImage
+                    style={{
+                        transform: props.xys.interpolate(trans as any),
+                    }}
+                    onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+                    onMouseLeave={() => set({ xys: [0, 0, 1] })}
+                >
+                    <ProfileImage src={profileImage} />
+                    <ProfileImageMobile src={mobileProfileImage} />
+                </AnimatedImage>
             </ImageContainer>
             <TextContainer style={{ zIndex: 0 }}>
                 <HomeText

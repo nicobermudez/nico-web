@@ -3,7 +3,7 @@ import React from "react";
 import { colors } from "src/constants/colors";
 import { mediaQueries } from "src/constants/media-queries";
 
-const FooterContainer = styled.div({
+const LinksContainer = styled.div({
     position: "absolute",
     top: 32,
     left: 32,
@@ -11,7 +11,6 @@ const FooterContainer = styled.div({
     display: "flex",
     justifyContent: "space-around",
     textTransform: "uppercase",
-    fontFamily: "sans-serif",
     zIndex: 2,
     [mediaQueries.md]: {
         position: "fixed",
@@ -27,9 +26,9 @@ const Link = styled.a({
     color: colors.white,
 });
 
-export const Footer: React.FC = () => (
-    <FooterContainer>
+export const Links: React.FC = () => (
+    <LinksContainer>
         <Link target="_blank" href="https://github.com/nicobermudez">Git</Link>
         <Link target="_blank" href="https://www.linkedin.com/in/nicolasbermudezco/">CV</Link>
-    </FooterContainer>
+    </LinksContainer>
 );

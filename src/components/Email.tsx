@@ -13,7 +13,6 @@ const EmailContainer = styled.div({
 });
 
 const Link = styled.a({
-    fontFamily: "sans-serif",
     fontWeight: 700,
     fontSize: 12,
     textTransform: "uppercase",
