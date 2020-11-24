@@ -29,7 +29,7 @@ export const About: React.FC = () => {
     return (
         <AboutContainer id="about">
             Hello, my name is Nico.
-            Previously, I studied Finance at <Link target="_blank" href="http://www.bu.edu/questrom/">Boston University</Link>
+            Previously, I studied Finance at <Link target="_blank" href="http://www.bu.edu/questrom/">Boston University&nbsp;</Link>
             and worked in Sales at <Link target="_blank" href="https://www.intuit.com/company/">Intuit </Link> and
             <Link target="_blank" href="https://www.salesforce.com/company/about-us/"> Salesforce</Link>.
             Currently, I'm a Software Engineer at
