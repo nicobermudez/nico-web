@@ -1,11 +1,6 @@
 name: UPDATE-PULL_REQUEST
 
-on:
-  workflow_dispatch:
-    inputs:
-      service_name:
-        description: "JIRA Ticket - Examples: WMT-201"
-        required: true
+on: pull_request
 
 env:
   ADMIN_LOGIN_PREFIX: https://www.gat-qa.com/admin/customer-login?featureEnv=
@@ -14,6 +9,11 @@ env:
 jobs:
   update_pr:
     runs-on: ubuntu-latest
+    outputs:
+      baseMatch: ${{ steps.update_pr.outputs.baseMatch }}
+      headMatch: ${{ steps.update_pr.outputs.headMatch }}
+      titleUpdated: ${{ steps.update_pr.outputs.titleUpdated }}
+      bodyUpdated: ${{ steps.update_pr.outputs.bodyUpdated }}
 
     steps:
       - name: Create feature environment name
@@ -25,14 +25,20 @@ jobs:
           FEATURE_ENVIRONMENT="$FEATURE_BRANCH_NAME-$REPO_ID"
           echo $FEATURE_ENVIRONMENT
           echo "::set-output name=feature_environment::$FEATURE_ENVIRONMENT"
+      - id: update_pr
+        uses: tzkhan/pr-update-action@v2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          head-branch-regex: '[a-z\d-_.\/]+'
+          title-template: "[updated-by-action]"
+          body-template: "Admin Login: ${{ steps.feature_environment.outputs.feature_environment }} - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}"
 
-      - uses: actions/checkout@main
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.1
-        with:
-          pr_body: "Admin Login: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }} - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  update_pr_outputs:
+    runs-on: ubuntu-latest
+    needs: update_pr
+    steps:
+      - run: |
+          echo 'baseMatch:' ${{needs.update_pr.outputs.baseMatch}}
+          echo 'headMatch:' ${{needs.update_pr.outputs.headMatch}}
+          echo 'titleUpdated:' ${{needs.update_pr.outputs.titleUpdated}}
+          echo 'bodyUpdated:' ${{needs.update_pr.outputs.bodyUpdated}}
