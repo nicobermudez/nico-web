@@ -27,7 +27,9 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: '[a-z\d-_.\/]+'
           title-template: "[updated-by-action]"
-          body-template: "### 💬 Description <br/> _Describe what your PR is trying to accomplish. Add any additional context that might helpful to review_<br/><br/> ### QA Environment <br/> ${{ steps.feature_environment.outputs.feature_environment }} "
+          body-template:
+          body-template: |
+                ### 💬 Description <br/> _Describe what your PR is trying to accomplish. Add any additional context that might helpful to review_<br/><br/> ### QA Environment <br/> ${{ steps.feature_environment.outputs.feature_environment }}
 
   update_pr_outputs:
     runs-on: ubuntu-latest
