@@ -1,7 +1,5 @@
 name: UPDATE-PULL_REQUEST
 
-on: pull_request
-
 jobs:
   update_pr:
     runs-on: ubuntu-latest
@@ -27,7 +25,7 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: '[a-z\d-_.\/]+'
           title-template: "[updated-by-action]"
-          body-template: "${{ steps.feature_environment.outputs.feature_environment }} [Updated by Pull Request Updater action]"
+          body-template: "### 💬 Description \ _Describe what your PR is trying to accomplish. Add any additional context that might helpful to review_\\ ### QA Environment \ ${{ steps.feature_environment.outputs.feature_environment }} "
 
   update_pr_outputs:
     runs-on: ubuntu-latest
