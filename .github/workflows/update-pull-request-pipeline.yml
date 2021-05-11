@@ -26,6 +26,7 @@ jobs:
         uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          head-branch-regex: '[a-z\d-_.\/]+'
           body-update-action: "suffix"
           body-template: |
             - Admin Login: ${{ env.ADMIN_LOGIN_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}
