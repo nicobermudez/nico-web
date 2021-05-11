@@ -1,6 +1,7 @@
 name: UPDATE-PULL_REQUEST
 
-on: pull_request
+on:
+  pull_request:
     branches:
       - main
 
