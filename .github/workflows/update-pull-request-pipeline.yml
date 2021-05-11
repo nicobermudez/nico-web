@@ -1,5 +1,7 @@
 name: UPDATE-PULL_REQUEST
 
+on: pull-request
+
 jobs:
   update_pr:
     runs-on: ubuntu-latest
