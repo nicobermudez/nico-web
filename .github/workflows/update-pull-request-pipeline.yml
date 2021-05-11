@@ -1,9 +1,7 @@
 name: UPDATE-PULL_REQUEST
 
 on:
-  pull_request:
-    branches:
-      - main
+  create: pull_request
 
 env:
   ADMIN_LOGIN_PREFIX: https://www.gat-qa.com/admin/customer-login?featureEnv=
