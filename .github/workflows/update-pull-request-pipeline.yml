@@ -9,7 +9,7 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           base-branch-regex: '[a-z\d-_.\\/]+'
-          head-branch-regex: 'foo-\d+'
+          head-branch-regex: 'main-\d+'
           title-template: "[%main%] "
           body-template: |
             I sm editing the description
