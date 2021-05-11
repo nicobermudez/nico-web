@@ -12,16 +12,17 @@ jobs:
     timeout-minutes: 2
 
     steps:
-      - name: Create feature environment name
-        id: feature_environment
-        run: |
-          FEATURE_BRANCH_NAME=$(echo "$GITHUB_REF" | sed 's:.*/::')
-          FEATURE_BRANCH_NAME=$(echo "$FEATURE_BRANCH_NAME" | sed 's/./\L&/g')
-          REPO_ID=$(echo ${{ github.event.repository.id }} | cut -c-5)
-          FEATURE_ENVIRONMENT="$FEATURE_BRANCH_NAME-$REPO_ID"
-          echo $FEATURE_ENVIRONMENT
-          echo "::set-output name=feature_environment::$FEATURE_ENVIRONMENT"
       - uses: actions/checkout@master
+      # - name: Create feature environment name
+      #   id: feature_environment
+      #   run: |
+      #     FEATURE_BRANCH_NAME=$(echo "$GITHUB_REF" | sed 's:.*/::')
+      #     FEATURE_BRANCH_NAME=$(echo "$FEATURE_BRANCH_NAME" | sed 's/./\L&/g')
+      #     REPO_ID=$(echo ${{ github.event.repository.id }} | cut -c-5)
+      #     FEATURE_ENVIRONMENT="$FEATURE_BRANCH_NAME-$REPO_ID"
+      #     echo $FEATURE_ENVIRONMENT
+      #     echo "::set-output name=feature_environment::$FEATURE_ENVIRONMENT"
+
       - name: create-description
         run: "some script for creating PR description from the branch diff"
         id: description
