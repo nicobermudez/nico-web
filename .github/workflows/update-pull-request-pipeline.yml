@@ -1,13 +1,11 @@
 name: UPDATE-PULL_REQUEST
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
         inputs:
             service_name:
                 description: 'JIRA Ticket - Examples: WMT-201 | APP-16'
                 required: true
-
-on: pull_request
 
 jobs:
   update_pr:
