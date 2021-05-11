@@ -29,11 +29,6 @@ jobs:
           title-template: "[updated-by-action]"
           body-template: "${{ steps.feature_environment.outputs.feature_environment }} [Updated by Pull Request Updater action]"
 
-      - name: Print user input
-          run: |
-              echo "Service name: ${{ github.event.inputs.service_name }}"
-
-
   update_pr_outputs:
     runs-on: ubuntu-latest
     needs: update_pr
