@@ -29,5 +29,5 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: '[a-z\d-_.\/]+'
           body-template: >
-            - Admin Login: ${{ env.ADMIN_LOGIN_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}\n
+            - Admin Login: ${{ env.ADMIN_LOGIN_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }} \n
             - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}
