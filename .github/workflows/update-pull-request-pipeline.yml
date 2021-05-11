@@ -16,7 +16,7 @@ jobs:
       - name: Create feature environment name
         id: feature_environment
         run: |
-          FEATURE_BRANCH_NAME=$(echo "$GITHUB_REF" | sed 's:.*/::')
+          FEATURE_BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}" | sed 's:.*/::')
           FEATURE_BRANCH_NAME=$(echo "$FEATURE_BRANCH_NAME" | sed 's/./\L&/g')
           REPO_ID=$(echo ${{ github.event.repository.id }} | cut -c-5)
           FEATURE_ENVIRONMENT="$FEATURE_BRANCH_NAME-$REPO_ID"
