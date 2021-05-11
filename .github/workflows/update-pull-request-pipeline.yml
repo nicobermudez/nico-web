@@ -9,11 +9,6 @@ env:
 jobs:
   update_pr:
     runs-on: ubuntu-latest
-    outputs:
-      baseMatch: ${{ steps.update_pr.outputs.baseMatch }}
-      headMatch: ${{ steps.update_pr.outputs.headMatch }}
-      titleUpdated: ${{ steps.update_pr.outputs.titleUpdated }}
-      bodyUpdated: ${{ steps.update_pr.outputs.bodyUpdated }}
 
     steps:
       - name: Create feature environment name
@@ -30,15 +25,4 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: '[a-z\d-_.\/]+'
-          title-template: "[updated-by-action]"
-          body-template: "Admin Login: ${{ steps.feature_environment.outputs.feature_environment }} - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}"
-
-  update_pr_outputs:
-    runs-on: ubuntu-latest
-    needs: update_pr
-    steps:
-      - run: |
-          echo 'baseMatch:' ${{needs.update_pr.outputs.baseMatch}}
-          echo 'headMatch:' ${{needs.update_pr.outputs.headMatch}}
-          echo 'titleUpdated:' ${{needs.update_pr.outputs.titleUpdated}}
-          echo 'bodyUpdated:' ${{needs.update_pr.outputs.bodyUpdated}}
+          body-template: "Admin Login: ${{ env.ADMIN_LOGIN_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }} - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}"
