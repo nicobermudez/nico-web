@@ -1,6 +1,6 @@
 name: UPDATE-PULL_REQUEST
 
-on: pull-request
+on: pull_request
 
 jobs:
   update_pr:
