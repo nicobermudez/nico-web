@@ -2,6 +2,10 @@ name: UPDATE-PULL_REQUEST
 
 on: pull_request
 
+env:
+  ADMIN_LOGIN_PREFIX: https://www.gat-qa.com/admin/customer-login?featureEnv=
+  EXPO_PROJECT_PAGE_PREFIX: https://expo.io/@ef-go-ahead-tours/gat-app?release-channel=
+
 jobs:
   update_pr:
     runs-on: ubuntu-latest
@@ -27,7 +31,7 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           head-branch-regex: '[a-z\d-_.\/]+'
           title-template: "[updated-by-action]"
-          body-template: "Admin Login: http://gat-qa.com/admin/customer-login?featureEnv=${{ steps.feature_environment.outputs.feature_environment }}  Expo QA: http://expo.com?release-channel=${{ steps.feature_environment.outputs.feature_environment }}"
+          body-template: "Admin Login: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }} - Expo QA: ${{ env.EXPO_PROJECT_PAGE_PREFIX }}${{ steps.feature_environment.outputs.feature_environment }}"
 
   update_pr_outputs:
     runs-on: ubuntu-latest
