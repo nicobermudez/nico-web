@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       service_name:
-        description: "SERVICE NAME - Examples: booking | quoting | tour-match | tour-cache"
+        description: "JIRA Ticket - Examples: WMT-201"
         required: true
 
 env:
@@ -26,7 +26,7 @@ jobs:
           echo $FEATURE_ENVIRONMENT
           echo "::set-output name=feature_environment::$FEATURE_ENVIRONMENT"
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
