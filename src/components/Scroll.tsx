@@ -38,15 +38,16 @@ const Pipe = styled(animated.div)({
     backgroundColor: colors.white,
 });
 
-type Props = {
+export type ScrollProps = {
     setScrollVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Scroll: React.FC<Props> = ({ setScrollVisible }) => {
-    const interp = (i: number) => (r: number) => `translate3d(0, ${15 * Math.sin(r + (i * 2 * Math.PI) / 1.6)}px, 0)`
+export const Scroll: React.FC<ScrollProps> = ({ setScrollVisible }) => {
+    const interp = (i: number) => (r: number) =>
+        `translate3d(0, ${15 * Math.sin(r + (i * 2 * Math.PI) / 1.6)}px, 0)`;
     const { radians }: any = useSpring({
-        to: async (next: (arg0: { radians: number; }) => any) => {
-            while (1) await next({ radians: 2 * Math.PI })
+        to: async (next: (arg0: { radians: number }) => any) => {
+            while (1) await next({ radians: 2 * Math.PI });
         },
         from: { radians: 0 },
         config: { duration: 2500 },

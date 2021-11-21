@@ -43,7 +43,9 @@ export const Email: React.FC = () => {
     return (
         <EmailContainer>
             <Icon />
-            <Link href="mailto:bermnicolas@gmail.com" target="_blank">bermnicolas@gmail.com</Link>
+            <Link href="mailto:bermnicolas@gmail.com" target="_blank">
+                bermnicolas@gmail.com
+            </Link>
         </EmailContainer>
     );
 };
