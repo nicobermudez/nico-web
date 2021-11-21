@@ -44,7 +44,7 @@ const ImageContainer = styled.div({
     top: 0,
     left: 0,
     height: "100%",
-    width: "100vw",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -69,7 +69,7 @@ const ProfileImage = styled.img({
         },
     },
     [mediaQueries.md]: {
-        maxWidth: "calc(60vw - 64px)",
+        maxWidth: "calc(60vw - 128px)",
     },
 });
 
@@ -89,14 +89,20 @@ const ProfileImageMobile = styled.img({
 
 export const Intro: React.FC = () => {
     const [isScrollVisible, setScrollVisible] = useState(true);
-    const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }));
-    const calc = (x: any, y: any) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1];
-    const trans = (x: any, y: any, s: any) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+    const [props, set] = useSpring(() => ({
+        xys: [0, 0, 1],
+        config: { mass: 5, tension: 350, friction: 40 },
+    }));
+    const calc = (x: any, y: any) => [
+        -(y - window.innerHeight / 2) / 20,
+        (x - window.innerWidth / 2) / 20,
+        1.1,
+    ];
+    const trans = (x: any, y: any, s: any) =>
+        `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
     useScrollPosition(({ currPos }) => {
-        currPos.y >= 0
-            ? setScrollVisible(true)
-            : setScrollVisible(false);
+        currPos.y >= 0 ? setScrollVisible(true) : setScrollVisible(false);
     });
 
     return (
@@ -106,7 +112,9 @@ export const Intro: React.FC = () => {
                     style={{
                         transform: props.xys.interpolate(trans as any),
                     }}
-                    onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+                    onMouseMove={({ clientX: x, clientY: y }) =>
+                        set({ xys: calc(x, y) })
+                    }
                     onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 >
                     <ProfileImage src={profileImage} />

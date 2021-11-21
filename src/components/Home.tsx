@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import React, { useState, useEffect } from "react";
-import { Loading } from "./Loading";
+import React from "react";
 import { About } from "./About";
 import { Email } from "./Email";
 import { Links } from "./Links";
 import { Intro } from "./Intro";
+import { Tip } from "./Tip";
 
 const Wrapper = styled.div({
     fontFamily: "sans-serif",
@@ -12,27 +12,24 @@ const Wrapper = styled.div({
 });
 
 export const Home: React.FC = () => {
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-          }, 2000);
-          return () => clearTimeout(timer);
-    }, []);
-
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setLoading(false);
+    //     }, 2000);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
     return (
         <>
-            {loading
-                ? <Loading />
-                : <Wrapper>
-                    <Intro />
-                    <About />
-                    <Links />
-                    <Email />
-                </Wrapper>
-            }
+            <Wrapper>
+                <Intro />
+                <About />
+                <Links />
+                <Email />
+                <Tip />
+            </Wrapper>
         </>
     );
 };

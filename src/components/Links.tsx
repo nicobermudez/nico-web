@@ -28,7 +28,14 @@ const Link = styled.a({
 
 export const Links: React.FC = () => (
     <LinksContainer>
-        <Link target="_blank" href="https://github.com/nicobermudez">Git</Link>
-        <Link target="_blank" href="https://www.linkedin.com/in/nicolasbermudezco/">CV</Link>
+        <Link target="_blank" href="https://github.com/nicobermudez">
+            GitHub
+        </Link>
+        <Link
+            target="_blank"
+            href="https://www.linkedin.com/in/nicolasbermudezco/"
+        >
+            CV
+        </Link>
     </LinksContainer>
 );
