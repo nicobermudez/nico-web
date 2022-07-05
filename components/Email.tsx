@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colors } from "src/constants/colors";
-import { mediaQueries } from "src/constants/media-queries";
+import { colors, mediaQueries } from "@app/theme";
 import { FiCornerDownRight } from "react-icons/fi";
 
 const EmailContainer = styled.div({

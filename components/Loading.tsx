@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/core";
+import { keyframes } from "@emotion/react";
 import React from "react";
-import { colors } from "src/constants/colors";
+import { colors } from "@app/theme";
 
 const LoadingContainer = styled.div({
     backgroundColor: colors.themeDark,

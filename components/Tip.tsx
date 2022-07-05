@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
 import web3 from "web3";
-import { colors } from "src/constants/colors";
+import { colors } from "@app/theme";
 
 const Wrapper = styled.div({
     backgroundColor: colors.white,
@@ -43,7 +43,7 @@ export const Tip: React.FC = () => {
     const [value, setValue] = useState("0.01");
     const [hasWallet, setHasWallet] = useState(false);
     useEffect(() => {
-        if (window.ethereum) {
+        if ((window as any).ethereum) {
             setHasWallet(true);
         }
     }, []);
@@ -118,14 +118,14 @@ export const Tip: React.FC = () => {
                         return;
                     }
 
-                    const accounts = await window.ethereum.request({
+                    const accounts = await (window as any).ethereum.request({
                         method: "eth_requestAccounts",
                     });
 
                     const wei = web3.utils.toWei(value, "ether");
                     if (accounts?.[0]) {
                         try {
-                            await window.ethereum.request({
+                            await (window as any).ethereum.request({
                                 method: "eth_sendTransaction",
                                 params: [
                                     {
@@ -137,13 +137,12 @@ export const Tip: React.FC = () => {
                             });
                             alert("Woo! Thank you!!");
                         } catch (e) {
-                            console.log(e);
                             return;
                         }
                     }
                 }}
                 disabled={!value}
-                css={{ marginTop: 16 }}
+                css={{ marginTop: 16, textAlign: "center" }}
             >
                 Tip
             </Button>

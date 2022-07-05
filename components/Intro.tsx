@@ -2,15 +2,10 @@ import styled from "@emotion/styled";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import profileImage from "src/assets/nico.jpeg";
-import mobileProfileImage from "src/assets/nico-mobile.jpeg";
-import { colors } from "src/constants/colors";
-import { mediaQueries } from "src/constants/media-queries";
+import { colors, mediaQueries } from "@app/theme";
 import { Scroll } from "./Scroll";
 
 const IntroContainer = styled.div({
-    backgroundColor: colors.themeDark,
-    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -51,7 +46,7 @@ const ImageContainer = styled.div({
 });
 
 const AnimatedImage = styled(animated.div)({
-    backgroundImage: profileImage,
+    backgroundImage: "/nico.jpeg",
     willChange: "transform",
     zIndex: 1,
 });
@@ -117,8 +112,8 @@ export const Intro: React.FC = () => {
                     }
                     onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 >
-                    <ProfileImage src={profileImage} />
-                    <ProfileImageMobile src={mobileProfileImage} />
+                    <ProfileImage src="/nico.jpeg" />
+                    <ProfileImageMobile src="/nico-mobile.jpeg" />
                 </AnimatedImage>
             </ImageContainer>
             <TextContainer style={{ zIndex: 0 }}>
