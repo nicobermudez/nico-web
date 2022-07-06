@@ -1,21 +1,16 @@
-import { About, Intro, Links, Tip } from "@app/components";
-import { Email } from "@app/components";
-import { UserGeolocationData } from "@app/middleware";
-import { useRef } from "react";
+import { Home } from "@app/components";
+import { NextQuery } from "@app/middleware";
+import { darkMode, lightMode } from "@app/theme";
+import { ThemeProvider } from "@emotion/react";
 
-export const getServerSideProps = ({ query }: any) => ({
+export const getServerSideProps = ({ query }: { query: NextQuery }) => ({
     props: query,
 });
 
-export default function Index({ greeting }: UserGeolocationData) {
-    const aboutRef = useRef<HTMLDivElement>(null);
+export default function Index({ theme, ...props }: NextQuery) {
     return (
-        <>
-            <Intro greeting={greeting} aboutRef={aboutRef} />
-            <About ref={aboutRef} />
-            <Links />
-            <Email />
-            <Tip />
-        </>
+        <ThemeProvider theme={theme === "dark" ? darkMode : lightMode}>
+            <Home {...props} />
+        </ThemeProvider>
     );
 }

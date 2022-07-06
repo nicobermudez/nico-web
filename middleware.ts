@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { countries } from "@app/lib";
+import { getTimes } from "suncalc";
 
 export type UserGeolocationData = {
     country?: string;
@@ -12,16 +13,23 @@ export type UserGeolocationData = {
     greeting?: string;
 };
 
+export type NextQuery = {
+    theme: string;
+} & UserGeolocationData;
+
 // run only on homepage
 export const config = {
     matcher: "/",
 };
 
 export function middleware(req: NextRequest): NextResponse {
+    // Set Geolocation
     const { nextUrl: url, geo } = req;
     const country = geo?.country || "US";
     const city = geo?.city || "Boston";
     const region = geo?.region || "MA";
+    const latitude = geo?.latitude ?? "0";
+    const longitude = geo?.longitude ?? "0";
 
     const countryInfo = countries.find((x: any) => x.cca2 === country);
 
@@ -38,6 +46,16 @@ export function middleware(req: NextRequest): NextResponse {
     url.searchParams.set("name", currency.name);
     url.searchParams.set("languages", languages);
     url.searchParams.set("greeting", greeting);
+
+    // Set theme
+    const now = new Date();
+    const { sunrise, sunset } = getTimes(
+        now,
+        Number(longitude),
+        Number(latitude),
+    );
+    const theme = now < sunrise || now > sunset ? "dark" : "light";
+    url.searchParams.set("theme", theme);
 
     return NextResponse.rewrite(url);
 }

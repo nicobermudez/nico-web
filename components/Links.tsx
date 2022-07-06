@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colors, mediaQueries } from "@app/theme";
+import { mediaQueries } from "@app/theme";
 
 const LinksContainer = styled.div({
     position: "absolute",
     top: 32,
     left: 32,
-    color: colors.white,
     display: "flex",
     justifyContent: "space-around",
     textTransform: "uppercase",
@@ -18,12 +17,19 @@ const LinksContainer = styled.div({
     },
 });
 
-const Link = styled.a({
-    marginRight: 16,
-    cursor: "pointer",
-    textDecoration: "none",
-    color: colors.white,
-});
+const Link = styled.a(
+    {
+        marginRight: 16,
+        cursor: "pointer",
+        textDecoration: "none",
+    },
+    ({ theme }) => ({
+        color: theme.palette.typography.secondary,
+        "&:active": {
+            color: theme.palette.typography.secondary,
+        },
+    }),
+);
 
 export const Links: React.FC = () => (
     <LinksContainer>

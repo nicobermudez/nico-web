@@ -7,6 +7,7 @@ import profileImage from "@app/public/nico.jpeg";
 import profileImageMobile from "@app/public/nico-mobile.jpeg";
 import { Scroll } from "./Scroll";
 import { UserGeolocationData } from "@app/middleware";
+import { useTheme } from "@emotion/react";
 
 const IntroContainer = styled.div({
     display: "flex",
@@ -90,6 +91,7 @@ export type IntroProps = {
 } & Pick<UserGeolocationData, "greeting">;
 
 export const Intro: React.FC<IntroProps> = ({ greeting, aboutRef }) => {
+    const theme = useTheme();
     const [isScrollVisible, setScrollVisible] = useState(true);
     const [props, set] = useSpring(() => ({
         xys: [0, 0, 1],
@@ -133,7 +135,7 @@ export const Intro: React.FC<IntroProps> = ({ greeting, aboutRef }) => {
                 <HomeText
                     style={{
                         bottom: 0,
-                        color: "lightblue",
+                        color: theme.palette.typography.secondary,
                         left: "-60vw",
                     }}
                 >
@@ -148,7 +150,7 @@ export const Intro: React.FC<IntroProps> = ({ greeting, aboutRef }) => {
                 <HomeText
                     style={{
                         top: 0,
-                        WebkitTextStroke: "1px white",
+                        WebkitTextStroke: `1px ${theme.palette.typography.secondary}`,
                         color: "transparent",
                         left: "-55vw",
                     }}
