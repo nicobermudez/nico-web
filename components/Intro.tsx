@@ -2,21 +2,19 @@ import styled from "@emotion/styled";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
-import profileImage from "src/assets/nico.jpeg";
-import mobileProfileImage from "src/assets/nico-mobile.jpeg";
-import { colors } from "src/constants/colors";
-import { mediaQueries } from "src/constants/media-queries";
+import { mediaQueries } from "@app/theme";
+import profileImage from "@app/public/nico.jpeg";
+import profileImageMobile from "@app/public/nico-mobile.jpeg";
 import { Scroll } from "./Scroll";
 
 const IntroContainer = styled.div({
-    backgroundColor: colors.themeDark,
-    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
     overflow: "hidden",
     paddingTop: 16,
+    minHeight: "100vh",
     [mediaQueries.md]: {
         paddingTop: 0,
     },
@@ -51,7 +49,6 @@ const ImageContainer = styled.div({
 });
 
 const AnimatedImage = styled(animated.div)({
-    backgroundImage: profileImage,
     willChange: "transform",
     zIndex: 1,
 });
@@ -110,15 +107,21 @@ export const Intro: React.FC = () => {
             <ImageContainer>
                 <AnimatedImage
                     style={{
-                        transform: props.xys.interpolate(trans as any),
+                        transform: props.xys.to(trans as any),
                     }}
                     onMouseMove={({ clientX: x, clientY: y }) =>
                         set({ xys: calc(x, y) })
                     }
                     onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 >
-                    <ProfileImage src={profileImage} />
-                    <ProfileImageMobile src={mobileProfileImage} />
+                    <ProfileImage
+                        src={profileImage.src}
+                        alt="Picture of me in the desert"
+                    />
+                    <ProfileImageMobile
+                        src={profileImageMobile.src}
+                        alt="Picture of me in the desert"
+                    />
                 </AnimatedImage>
             </ImageContainer>
             <TextContainer style={{ zIndex: 0 }}>

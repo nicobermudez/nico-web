@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colors } from "src/constants/colors";
-import { mediaQueries } from "src/constants/media-queries";
+import { colors, mediaQueries } from "@app/theme";
 import { FiCornerDownRight } from "react-icons/fi";
 
 const EmailContainer = styled.div({
     textAlign: "center",
-    margin: "0 16px 128px 16px",
+    padding: "0 16px 128px 16px",
     [mediaQueries.md]: {
-        margin: "0 16px 256px 16px",
+        padding: "0 16px 256px 16px",
     },
 });
 

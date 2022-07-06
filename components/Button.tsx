@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import darken from "polished/lib/color/darken";
-import { colors } from "src/constants/colors";
+import { darken } from "polished";
+import { colors } from "@app/theme";
 
 export const Button = styled.button({
     backgroundColor: colors.themeLight,
