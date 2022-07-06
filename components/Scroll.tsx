@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import ScrollChor from "react-scrollchor";
-import { colors, mediaQueries } from "@app/theme";
+import { mediaQueries } from "@app/theme";
 
 const ScrollContainer = styled.div({
     position: "absolute",
@@ -18,35 +17,49 @@ const ScrollContainer = styled.div({
     },
 });
 
-const Text = styled.div({
-    marginBottom: 32,
-    color: colors.themeLight,
-    fontSize: 16,
-    fontWeight: 700,
-    letterSpacing: 8,
-    [mediaQueries.md]: {
-        fontSize: 24,
+const Text = styled.div(
+    {
+        marginBottom: 32,
+        fontSize: 16,
+        fontWeight: 700,
+        letterSpacing: 8,
+        [mediaQueries.md]: {
+            fontSize: 24,
+        },
     },
-});
+    ({ theme }) => ({
+        color: theme.palette.typography.secondary,
+    }),
+);
 
-const Pipe = styled.div({
-    width: 0,
-    borderLeft: `0.1rem solid ${colors.themeLight}`,
-    height: "3.5rem",
-    backgroundColor: colors.white,
-});
+const Pipe = styled.div(
+    {
+        width: 1,
+        height: "3.5rem",
+    },
+    ({ theme }) => ({
+        backgroundColor: theme.palette.typography.secondary,
+    }),
+);
 
 export type ScrollProps = {
+    onScroll: () => void;
     setScrollVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Scroll: React.FC<ScrollProps> = ({ setScrollVisible }) => {
+export const Scroll: React.FC<ScrollProps> = ({
+    onScroll,
+    setScrollVisible,
+}) => {
     return (
-        <ScrollChor to="about">
-            <ScrollContainer onClick={() => setScrollVisible(false)}>
-                <Text>Scroll</Text>
-                <Pipe />
-            </ScrollContainer>
-        </ScrollChor>
+        <ScrollContainer
+            onClick={() => {
+                onScroll();
+                setScrollVisible(false);
+            }}
+        >
+            <Text>Scroll</Text>
+            <Pipe />
+        </ScrollContainer>
     );
 };

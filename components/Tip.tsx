@@ -2,29 +2,32 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
 import web3 from "web3";
-import { colors } from "@app/theme";
 
-const Wrapper = styled.div({
-    backgroundColor: colors.white,
-    boxShadow: "0 2px 10px 0 rgba(0, 0, 0, 0.1)",
-    borderRadius: 8,
-    position: "fixed",
-    bottom: 32,
-    right: 32,
-    width: 200,
-    padding: "16px 32px 32px 32px",
-    display: "flex",
-    flexDirection: "column",
-    animation: "fadein 0.4s 0.8s ease-in-out both",
-    "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button": {
-        WebkitAppearance: "none",
-        margin: 0,
+const Wrapper = styled.div(
+    {
+        boxShadow: "0 2px 10px 0 rgba(0, 0, 0, 0.1)",
+        borderRadius: 8,
+        position: "fixed",
+        bottom: 32,
+        right: 32,
+        width: 200,
+        padding: "16px 32px 32px 32px",
+        display: "flex",
+        flexDirection: "column",
+        animation: "fadein 0.4s 0.8s ease-in-out both",
+        "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button": {
+            WebkitAppearance: "none",
+            margin: 0,
+        },
+        "input[type=number]": {
+            MozAppearance: "textfield",
+        },
+        zIndex: 2,
     },
-    "input[type=number]": {
-        MozAppearance: "textfield",
-    },
-    zIndex: 2,
-});
+    ({ theme }) => ({
+        backgroundColor: theme.palette.surfaces.secondary,
+    }),
+);
 
 const Input = styled.input({
     gridArea: "input",
@@ -142,7 +145,7 @@ export const Tip: React.FC = () => {
                     }
                 }}
                 disabled={!value}
-                css={{ marginTop: 16, textAlign: "center" }}
+                style={{ marginTop: 16, textAlign: "center" }}
             >
                 Tip
             </Button>

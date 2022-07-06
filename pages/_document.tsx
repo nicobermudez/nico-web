@@ -5,7 +5,6 @@ class _Document extends Document {
         return (
             <Html lang="en">
                 <Head>
-                    <meta name="theme-color" content="#000000" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <body>

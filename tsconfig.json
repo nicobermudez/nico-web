@@ -4,9 +4,9 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
-        "strict": false,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
         "noEmit": true,
-        "incremental": true,
         "esModuleInterop": true,
         "module": "esnext",
         "moduleResolution": "node",
@@ -14,7 +14,7 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "jsxImportSource": "@emotion/react",
-        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
         "baseUrl": "./",
         "paths": {
             "@app/*": ["./*"]
