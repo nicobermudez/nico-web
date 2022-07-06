@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
 import web3 from "web3";
 import { colors } from "@app/theme";
-import { UserGeolocationData } from "@app/middleware";
 
 const Wrapper = styled.div({
     backgroundColor: colors.white,
@@ -39,13 +38,7 @@ const Input = styled.input({
     maxWidth: "50%",
 });
 
-export type TipProps = Pick<
-    UserGeolocationData,
-    "currencyCode" | "currencySymbol"
->;
-
-export const Tip: React.FC<TipProps> = ({ currencyCode, currencySymbol }) => {
-    // TODO: Fetch current ETH price compared to currencyCode
+export const Tip: React.FC = () => {
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState("0.01");
     const [hasWallet, setHasWallet] = useState(false);

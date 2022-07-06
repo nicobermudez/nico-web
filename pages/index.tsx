@@ -1,11 +1,10 @@
 import { About, Intro, Links, Tip } from "@app/components";
-import { Email } from "@app/components/Email";
-import { UserGeolocationData } from "@app/middleware";
+import { Email } from "@app/components";
 
-export default function Index({ greeting }: UserGeolocationData) {
+export default function Index() {
     return (
         <>
-            <Intro greeting={greeting} />
+            <Intro />
             <About />
             <Links />
             <Email />
