@@ -36,12 +36,21 @@ const Pipe = styled.div({
 });
 
 export type ScrollProps = {
+    onScroll: () => void;
     setScrollVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Scroll: React.FC<ScrollProps> = ({ setScrollVisible }) => {
+export const Scroll: React.FC<ScrollProps> = ({
+    onScroll,
+    setScrollVisible,
+}) => {
     return (
-        <ScrollContainer onClick={() => setScrollVisible(false)}>
+        <ScrollContainer
+            onClick={() => {
+                onScroll();
+                setScrollVisible(false);
+            }}
+        >
             <Text>Scroll</Text>
             <Pipe />
         </ScrollContainer>

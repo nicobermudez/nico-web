@@ -18,7 +18,6 @@ export const config = {
 };
 
 export function middleware(req: NextRequest): NextResponse {
-    console.log("In the middle");
     const { nextUrl: url, geo } = req;
     const country = geo?.country || "US";
     const city = geo?.city || "Boston";

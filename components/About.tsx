@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colors, mediaQueries } from "@app/theme";
+import { forwardRef } from "react";
 
 const AboutContainer = styled.div({
     backgroundColor: "#16181d",
@@ -24,9 +25,9 @@ const Link = styled.a({
     fontWeight: "bold",
 });
 
-export const About: React.FC = () => {
+export const About = forwardRef<HTMLDivElement>((_, ref) => {
     return (
-        <AboutContainer id="about">
+        <AboutContainer ref={ref}>
             Hello, my name is Nico. Previously, I studied Finance at&nbsp;
             <Link target="_blank" href="https://www.bu.edu/questrom/">
                 Boston University&nbsp;
@@ -51,4 +52,4 @@ export const About: React.FC = () => {
             send me a message via LinkedIn or email me below.
         </AboutContainer>
     );
-};
+});

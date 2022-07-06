@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import React, { useState } from "react";
+import React, { RefObject, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { mediaQueries } from "@app/theme";
 import profileImage from "@app/public/nico.jpeg";
@@ -85,9 +85,11 @@ const ProfileImageMobile = styled.img({
     },
 });
 
-export type IntroProps = Pick<UserGeolocationData, "greeting">;
+export type IntroProps = {
+    aboutRef: RefObject<HTMLDivElement>;
+} & Pick<UserGeolocationData, "greeting">;
 
-export const Intro: React.FC<IntroProps> = ({ greeting }) => {
+export const Intro: React.FC<IntroProps> = ({ greeting, aboutRef }) => {
     const [isScrollVisible, setScrollVisible] = useState(true);
     const [props, set] = useSpring(() => ({
         xys: [0, 0, 1],
@@ -158,7 +160,16 @@ export const Intro: React.FC<IntroProps> = ({ greeting }) => {
                         ))}
                 </HomeText>
             </TextContainer>
-            {isScrollVisible && <Scroll setScrollVisible={setScrollVisible} />}
+            {isScrollVisible && (
+                <Scroll
+                    setScrollVisible={setScrollVisible}
+                    onScroll={() =>
+                        aboutRef?.current?.scrollIntoView({
+                            behavior: "smooth",
+                        })
+                    }
+                />
+            )}
         </IntroContainer>
     );
 };
