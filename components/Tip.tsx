@@ -142,7 +142,7 @@ export const Tip: React.FC = () => {
                     }
                 }}
                 disabled={!value}
-                css={{ marginTop: 16, textAlign: "center" }}
+                style={{ marginTop: 16, textAlign: "center" }}
             >
                 Tip
             </Button>

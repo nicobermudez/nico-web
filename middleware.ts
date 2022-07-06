@@ -20,11 +20,11 @@ export const config = {
 export function middleware(req: NextRequest): NextResponse {
     console.log("In the middle");
     const { nextUrl: url, geo } = req;
-    const country = geo.country || "US";
-    const city = geo.city || "Boston";
-    const region = geo.region || "MA";
+    const country = geo?.country || "US";
+    const city = geo?.city || "Boston";
+    const region = geo?.region || "MA";
 
-    const countryInfo = countries.find((x) => x.cca2 === country);
+    const countryInfo = countries.find((x: any) => x.cca2 === country);
 
     const currencyCode = Object.keys(countryInfo.currencies)?.[0];
     const currency = countryInfo.currencies?.[currencyCode];

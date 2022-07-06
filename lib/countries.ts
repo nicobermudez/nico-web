@@ -1,4 +1,4 @@
-export const countries = [
+export const countries: any = [
     {
         cca2: "AW",
         currencies: { AWG: { name: "Aruban florin", symbol: "ƒ" } },

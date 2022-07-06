@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import ScrollChor from "react-scrollchor";
 import { colors, mediaQueries } from "@app/theme";
 
 const ScrollContainer = styled.div({
@@ -42,11 +41,9 @@ export type ScrollProps = {
 
 export const Scroll: React.FC<ScrollProps> = ({ setScrollVisible }) => {
     return (
-        <ScrollChor to="about">
-            <ScrollContainer onClick={() => setScrollVisible(false)}>
-                <Text>Scroll</Text>
-                <Pipe />
-            </ScrollContainer>
-        </ScrollChor>
+        <ScrollContainer onClick={() => setScrollVisible(false)}>
+            <Text>Scroll</Text>
+            <Pipe />
+        </ScrollContainer>
     );
 };

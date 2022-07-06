@@ -11,7 +11,7 @@ const _App: FC<AppProps> = ({ Component, pageProps }) => {
                 <title>Nico Bermudez</title>
             </Head>
             <div
-                css={{
+                style={{
                     backgroundColor: colors.themeDark,
                     fontFamily: "sans-serif",
                     position: "relative",
