@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { countries } from "@app/lib";
 
 export type UserGeolocationData = {
     country?: string;
@@ -23,7 +22,7 @@ export async function middleware(req: NextRequest) {
     const city = geo.city || "Boston";
     const region = geo.region || "MA";
 
-    const countryInfo = countries.find((x) => x.cca2 === country);
+    const countryInfo = [].find((x) => x.cca2 === country);
 
     const currencyCode = Object.keys(countryInfo.currencies)?.[0];
     const currency = countryInfo.currencies?.[currencyCode];
