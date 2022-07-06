@@ -1,17 +1,26 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export type UserGeolocationData = {
-    country?: string;
-    city?: string;
-    region?: string;
-    currencyCode?: string;
-    currencySymbol?: string;
-    name?: string;
-    languages?: string;
-    greeting?: string;
+import { NextResponse } from "next/server";
+
+// Block Austria, prefer Germany
+const BLOCKED_COUNTRY = "AT";
+
+// Limit middleware pathname config
+export const config = {
+    matcher: "/",
 };
 
-export async function middleware(req: NextRequest) {
-    console.log("Middleware ran");
-    return NextResponse.next();
+export function middleware(req: NextRequest) {
+    // Extract country
+    const country = req.geo.country || "US";
+
+    // Specify the correct pathname
+    if (country === BLOCKED_COUNTRY) {
+        req.nextUrl.pathname = "/blocked";
+    } else {
+        req.nextUrl.pathname = `/${country}`;
+    }
+
+    // Rewrite to URL
+    return NextResponse.rewrite(req.nextUrl);
 }
