@@ -43,7 +43,7 @@ export const About: React.FC = () => {
                 {" "}
                 Salesforce
             </Link>
-            . Currently, I'm a Senior Software Engineer at
+            . Currently, I'm a Lead Software Engineer at
             <Link target="_blank" href="https://ef.com/">
                 {" "}
                 Education First

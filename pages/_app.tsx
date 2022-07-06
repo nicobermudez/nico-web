@@ -12,10 +12,6 @@ const _App: FC<AppProps> = ({ Component, pageProps }) => {
             </Head>
             <div
                 css={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr",
-                    gridTemplateRows: "min-content 1fr min-content",
-                    minHeight: "100vh",
                     backgroundColor: colors.themeDark,
                     fontFamily: "sans-serif",
                     position: "relative",
