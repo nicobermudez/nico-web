@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colors, mediaQueries } from "@app/theme";
+import { UserGeolocationData } from "@app/middleware";
 
 const AboutContainer = styled.div({
     backgroundColor: "#16181d",
@@ -27,26 +28,24 @@ const Link = styled.a({
 export const About: React.FC = () => {
     return (
         <AboutContainer id="about">
-            Hello, my name is Nico. Previously, I studied Finance at{" "}
-            <Link target="_blank" href="http://www.bu.edu/questrom/">
+            Hello, my name is Nico. Previously, I studied Finance at&nbsp;
+            <Link target="_blank" href="https://www.bu.edu/questrom/">
                 Boston University&nbsp;
             </Link>
-            and worked in Sales at{" "}
+            and worked in Sales at&nbsp;
             <Link target="_blank" href="https://www.intuit.com/company/">
-                Intuit{" "}
-            </Link>{" "}
-            and
+                Intuit&nbsp;
+            </Link>
+            &nbsp; and
             <Link
                 target="_blank"
                 href="https://www.salesforce.com/company/about-us/"
             >
-                {" "}
-                Salesforce
+                &nbsp; Salesforce
             </Link>
             . Currently, I'm a Lead Software Engineer at
             <Link target="_blank" href="https://ef.com/">
-                {" "}
-                Education First
+                &nbsp; Education First
             </Link>
             . If you ever want to grab coffee or chat about coding, the cosmos,
             life, business, or whatever topic you can think of, feel free to
