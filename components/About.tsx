@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colors, mediaQueries } from "@app/theme";
+import { UserGeolocationData } from "@app/middleware";
 
 const AboutContainer = styled.div({
     backgroundColor: "#16181d",
