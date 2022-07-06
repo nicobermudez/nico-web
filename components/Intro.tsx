@@ -6,7 +6,6 @@ import { mediaQueries } from "@app/theme";
 import profileImage from "@app/public/nico.jpeg";
 import profileImageMobile from "@app/public/nico-mobile.jpeg";
 import { Scroll } from "./Scroll";
-import { UserGeolocationData } from "@app/middleware";
 
 const IntroContainer = styled.div({
     display: "flex",
@@ -85,9 +84,7 @@ const ProfileImageMobile = styled.img({
     },
 });
 
-export type IntroProps = Pick<UserGeolocationData, "greeting">;
-
-export const Intro: React.FC<IntroProps> = ({ greeting }) => {
+export const Intro: React.FC = () => {
     const [isScrollVisible, setScrollVisible] = useState(true);
     const [props, set] = useSpring(() => ({
         xys: [0, 0, 1],
@@ -138,7 +135,7 @@ export const Intro: React.FC<IntroProps> = ({ greeting }) => {
                     {Array(6)
                         .fill("")
                         .map(() => (
-                            <span>{greeting}&thinsp;</span>
+                            <span>{"Hello"}&thinsp;</span>
                         ))}
                 </HomeText>
             </TextContainer>
@@ -154,7 +151,7 @@ export const Intro: React.FC<IntroProps> = ({ greeting }) => {
                     {Array(6)
                         .fill("")
                         .map(() => (
-                            <span>{greeting}&thinsp;</span>
+                            <span>{"Hello"}&thinsp;</span>
                         ))}
                 </HomeText>
             </TextContainer>
