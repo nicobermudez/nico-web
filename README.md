@@ -1,6 +1,6 @@
 ## nicobermudez.co
 
-Welcome to my personal website!
+Welcome to my personal website. Explore my background, photos, blog, and more!
 
 ## Getting Started
 
