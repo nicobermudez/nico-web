@@ -2,6 +2,8 @@
 
 Welcome to my personal website. Explore my background, photos, blog, and more!
 
+https://nicobermudez.co
+
 ## Getting Started
 
 First, run the development server:
