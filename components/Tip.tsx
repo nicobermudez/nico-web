@@ -51,6 +51,10 @@ export const Tip: React.FC = () => {
         }
     }, []);
 
+    if (!hasWallet) {
+        return null;
+    }
+
     if (!visible) {
         return (
             <Wrapper
@@ -116,11 +120,6 @@ export const Tip: React.FC = () => {
             </div>
             <Button
                 onClick={async () => {
-                    if (!hasWallet) {
-                        alert("Please install a wallet");
-                        return;
-                    }
-
                     const accounts = await (window as any).ethereum.request({
                         method: "eth_requestAccounts",
                     });
@@ -133,7 +132,7 @@ export const Tip: React.FC = () => {
                                 params: [
                                     {
                                         from: accounts[0],
-                                        to: "0xAca0842546A19E0F64738b8CF9E8c570D831457E",
+                                        to: process.env.NEXT_PUBLIC_ETH_ACCOUNT,
                                         value: web3.utils.toHex(wei),
                                     },
                                 ],
