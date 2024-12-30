@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { countries } from "@app/lib";
 import { getTimes } from "suncalc";
 
@@ -22,7 +22,7 @@ export const config = {
     matcher: "/",
 };
 
-export function middleware(req: NextRequest): NextResponse {
+export function middleware(req: any): NextResponse {
     // Set Geolocation
     const { nextUrl: url, geo } = req;
     const country = geo?.country || "CH";
