@@ -25,9 +25,9 @@ export const config = {
 export function middleware(req: NextRequest): NextResponse {
     // Set Geolocation
     const { nextUrl: url, geo } = req;
-    const country = geo?.country || "US";
-    const city = geo?.city || "Boston";
-    const region = geo?.region || "MA";
+    const country = geo?.country || "CH";
+    const city = geo?.city || "Zurich";
+    const region = geo?.region || "Switzerland";
     const latitude = geo?.latitude ?? "0";
     const longitude = geo?.longitude ?? "0";
 
@@ -36,7 +36,7 @@ export function middleware(req: NextRequest): NextResponse {
     const currencyCode = Object.keys(countryInfo.currencies)?.[0];
     const currency = countryInfo.currencies?.[currencyCode];
     const languages = Object.values(countryInfo.languages).join(", ");
-    const greeting = countryInfo.greeting ?? "Hello";
+    const greeting = countryInfo.greeting ?? "Hallo";
 
     url.searchParams.set("country", country);
     url.searchParams.set("city", city);
