@@ -25,6 +25,7 @@ const IntroContainer = styled.div({
 const TextContainer = styled.div({
     transform: "rotate(-8deg)",
     transformOrigin: "50% 50%",
+    pointerEvents: "none",
 });
 
 const HomeText = styled.div({

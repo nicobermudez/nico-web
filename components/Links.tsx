@@ -42,5 +42,8 @@ export const Links: React.FC = () => (
         >
             CV
         </Link>
+        <Link target="_blank" href="https://soundcloud.com/nicobermudez16">
+            SoundCloud
+        </Link>
     </LinksContainer>
 );

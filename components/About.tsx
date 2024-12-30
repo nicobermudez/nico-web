@@ -37,28 +37,18 @@ const Link = styled.a(
 export const About = forwardRef<HTMLDivElement>((_, ref) => {
     return (
         <AboutContainer ref={ref}>
-            Hello, my name is Nico. Previously, I studied Finance at&nbsp;
-            <Link target="_blank" href="https://www.bu.edu/questrom/">
-                Boston University&nbsp;
-            </Link>
-            and worked in Sales at&nbsp;
-            <Link target="_blank" href="https://www.intuit.com/company/">
-                Intuit&nbsp;
-            </Link>
-            &nbsp;and
-            <Link
-                target="_blank"
-                href="https://www.salesforce.com/company/about-us/"
-            >
-                &nbsp;Salesforce
-            </Link>
-            . Currently, I'm a Lead Software Engineer at
-            <Link target="_blank" href="https://ef.com/">
-                &nbsp;Education First
-            </Link>
-            . If you ever want to grab coffee or chat about coding, the cosmos,
-            life, business, or whatever topic you can think of, feel free to
-            send me a message via LinkedIn or email me below.
+            I'm Nico. Originally from Bogotá, Colombia, I lead and enable teams
+            as an Engineering Manager at{" "}
+            <Link target="_blank" href="https://www.efworldjourneys.com/">
+                EF World Journeys
+            </Link>{" "}
+            in Zurich, building technology that connects cultures, communities,
+            and people through travel. By night, I’m immersed in music and
+            art—DJing, producing, and capturing life through the lens of my film
+            camera. My journey thrives at the intersection of culture, sound,
+            and spiritual curiosity. Drop me a note if you’re into technology,
+            music, the cosmos, or the soulful pursuit of making ideas come
+            alive.
         </AboutContainer>
     );
 });

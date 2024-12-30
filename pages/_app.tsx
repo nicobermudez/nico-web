@@ -1,22 +1,16 @@
 import { ResetStyles } from "@app/components/ResetStyles";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { FC, useEffect } from "react";
-import GoogleTagManager from "react-gtm-module";
+import React from "react";
+import { Analytics } from "@vercel/analytics/next";
 
-const _App: FC<AppProps> = ({ Component, pageProps }) => {
-    useEffect(() => {
-        if (process.env.NEXT_PUBLIC_GTM_ID) {
-            GoogleTagManager.initialize({
-                gtmId: process.env.NEXT_PUBLIC_GTM_ID,
-            });
-        }
-    }, []);
+const _App: React.FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
             <Head>
                 <title>Nico Bermudez</title>
             </Head>
+            <Analytics />
             <Component {...pageProps} />
             <ResetStyles />
         </>

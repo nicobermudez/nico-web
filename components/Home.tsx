@@ -5,7 +5,6 @@ import { About } from "./About";
 import { Email } from "./Email";
 import { Intro } from "./Intro";
 import { Links } from "./Links";
-import { Tip } from "./Tip";
 
 const Wrapper = styled.div(
     {
@@ -27,7 +26,6 @@ export const Home: React.FC<HomeProps> = ({ greeting }) => {
             <About ref={aboutRef} />
             <Links />
             <Email />
-            <Tip />
         </Wrapper>
     );
 };
