@@ -1,0 +1,42 @@
+.container {
+    text-align: center;
+    padding: 0 1rem 8rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 1rem 16rem;
+    }
+}
+
+.icon {
+    font-size: 0.75rem;
+    color: var(--typography-secondary);
+}
+
+@media (min-width: 768px) {
+    .icon {
+        font-size: 1.5rem;
+    }
+}
+
+.link {
+    font-weight: bold;
+    color: var(--typography-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .link {
+        letter-spacing: 0.2rem;
+        font-size: 2rem;
+    }
+}
+
+.link:hover {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--typography-main);
+    text-stroke: 1px var(--typography-main);
+}

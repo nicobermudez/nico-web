@@ -1,0 +1,28 @@
+.container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+@media (min-width: 768px) {
+    .container {
+        position: fixed;
+        top: 4rem;
+        left: 4rem;
+    }
+}
+
+.link {
+    margin-right: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--typography-secondary);
+}
+
+.link:active {
+    color: var(--typography-secondary);
+}

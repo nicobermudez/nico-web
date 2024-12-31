@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --typography-main: #ffffff;
+    --typography-secondary: #e0fbfc;
+    --typography-contrast: #3d5a80;
+    --surfaces-default: #16181d;
+    --surfaces-secondary: #ffffff;
+    --background: var(--surfaces-default);
+    --foreground: var(--typography-main);
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}

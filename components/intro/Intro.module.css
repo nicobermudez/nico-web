@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 1rem;
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-top: 0;
+    }
+}
+
+.imageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animatedImage {
+    will-change: transform;
+    z-index: 1;
+}
+
+.profileImage {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .profileImage {
+        display: block;
+        max-width: calc(100vw - 64px);
+    }
+}
+
+.profileImageMobile {
+    display: block;
+}
+
+@media (min-width: 640px) {
+    .profileImageMobile {
+        display: none;
+    }
+}
+
+.textContainer {
+    transform: rotate(-8deg);
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    position: relative;
+}
+
+.homeText {
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.5rem;
+    position: absolute;
+    color: var(--typography-secondary);
+    bottom: 0;
+    left: -60vw;
+}
+
+.textContainerOutline {
+    transform: rotate(-8deg);
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+}
+
+.homeTextOutline {
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.5rem;
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--typography-secondary);
+    top: 0;
+    left: -55vw;
+}
+
+@media (min-width: 768px) {
+    .homeText,
+    .homeTextOutline {
+        font-size: 8rem;
+    }
+}
