@@ -39,8 +39,8 @@ export const ProfileImage: React.FC = () => {
                     className={styles.profileImageMobile}
                     src="/profile-vertical.jpeg"
                     alt="Mobile Profile Image"
-                    width={500}
-                    height={500}
+                    width={300}
+                    height={300}
                     priority
                 />
             </animated.div>

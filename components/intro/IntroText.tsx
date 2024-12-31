@@ -6,14 +6,14 @@ export const IntroText: React.FC = () => {
             <div className={styles.textContainer}>
                 <div className={styles.homeText}>
                     {Array.from({ length: 6 }).map((_, index) => (
-                        <span key={index}>Hallo&thinsp;</span>
+                        <span key={index}>Hola&thinsp;</span>
                     ))}
                 </div>
             </div>
             <div className={styles.textContainerOutline}>
                 <div className={styles.homeTextOutline}>
                     {Array.from({ length: 6 }).map((_, index) => (
-                        <span key={index}>Hallo&thinsp;</span>
+                        <span key={index}>Hola&thinsp;</span>
                     ))}
                 </div>
             </div>
