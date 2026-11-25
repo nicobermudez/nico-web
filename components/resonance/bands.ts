@@ -6,8 +6,9 @@
 // tones, and depth glides between them only near band edges.
 //
 // Content descends from the public to the personal: a greeting in the
-// canopy, origins in the understory, work on the forest floor, and what
-// moves you, with the invitation to write, at the roots.
+// canopy, origins and work in the understory, nights of music and film on
+// the forest floor, and what's underneath it all, with an invitation to
+// write, at the roots.
 
 export type BandLink = {
     label: string;
@@ -40,16 +41,8 @@ export const BANDS: Band[] = [
         to: 0.5,
         hz: 210.42,
         tone: "Moon",
-        lines: ["Born in Bogotá.", "Tuned in Zürich."],
-    },
-    {
-        name: "Forest floor",
-        from: 0.5,
-        to: 0.75,
-        hz: 136.1,
-        tone: "Earth year · Om",
-        lines: ["I lead teams building technology", "that connects people through travel."],
-        detail: "Engineering Manager at EF World Journeys.",
+        lines: ["Born in Colombia,", "living in Switzerland."],
+        detail: "I build technology that connects people through travel.",
         links: [
             { label: "EF World Journeys", href: "https://www.efworldjourneys.com/" },
             { label: "GitHub", href: "https://github.com/nicobermudez" },
@@ -57,17 +50,23 @@ export const BANDS: Band[] = [
         ],
     },
     {
+        name: "Forest floor",
+        from: 0.5,
+        to: 0.75,
+        hz: 136.1,
+        tone: "Earth year · Om",
+        lines: ["By night, I DJ,", "produce and shoot on film."],
+        links: [{ label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" }],
+    },
+    {
         name: "Roots",
         from: 0.75,
         to: 1.0001,
         hz: 68.05,
         tone: "Earth year · octave below",
-        lines: ["Sound, film, the cosmos.", "Everything vibrates."],
-        detail: "By night I DJ, produce, and shoot on film. If you're into music, technology or the cosmos, drop me a note.",
-        links: [
-            { label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" },
-            { label: "bermnicolas@gmail.com", href: "mailto:bermnicolas@gmail.com" },
-        ],
+        lines: ["Everything vibrates."],
+        detail: "If you're into music, technology or the cosmos, drop me a note.",
+        links: [{ label: "bermnicolas@gmail.com", href: "mailto:bermnicolas@gmail.com" }],
     },
 ];
 
