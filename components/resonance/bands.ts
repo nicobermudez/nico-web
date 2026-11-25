@@ -6,9 +6,9 @@
 // tones, and depth glides between them only near band edges.
 //
 // Content descends from the public to the personal: a greeting in the
-// canopy, origins and work in the understory, nights of music and film on
-// the forest floor, and what's underneath it all, with an invitation to
-// write, at the roots.
+// canopy, origins and work in the understory, sound (meditation and music
+// production) on the forest floor, and what's underneath it all, with an
+// invitation to write, at the roots.
 
 export type BandLink = {
     label: string;
@@ -55,7 +55,8 @@ export const BANDS: Band[] = [
         to: 0.75,
         hz: 136.1,
         tone: "Earth year · Om",
-        lines: ["By night, I DJ,", "produce and shoot on film."],
+        lines: ["The space", "between sounds."],
+        detail: "I shape frequencies through sound meditations and music production.",
         links: [{ label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" }],
     },
     {
