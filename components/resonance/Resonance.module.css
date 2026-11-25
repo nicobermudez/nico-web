@@ -97,6 +97,7 @@
 
 .lines span {
     display: block;
+    text-wrap: balance;
 }
 
 /* The quieter layer of each band: context, then where to go next. */
