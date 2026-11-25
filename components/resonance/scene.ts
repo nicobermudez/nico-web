@@ -15,8 +15,7 @@ const FIELD_RADIUS = 7;
 
 // Canopy (depth 0) to roots (depth 1).
 const PALETTE = {
-    bgHigh: new THREE.Color("#0a120c"),
-    bgLow: new THREE.Color("#120b07"),
+    bg: new THREE.Color("#0a120c"),
     sandHigh: new THREE.Color("#9fc7a0"),
     sandLow: new THREE.Color("#c97a3a"),
     node: new THREE.Color("#f3ead6"),
@@ -364,7 +363,8 @@ export function createScene(
     let last = performance.now();
     let frame = 0;
     let visible = true;
-    const bg = new THREE.Color();
+    // The background stays on the canopy color for the whole descent.
+    renderer.setClearColor(PALETTE.bg);
     const lookAt = new THREE.Vector3();
 
     const io = new IntersectionObserver(([entry]) => {
@@ -404,8 +404,6 @@ export function createScene(
         camera.lookAt(lookAt);
         field.rotation.y = time * 0.02;
 
-        bg.copy(PALETTE.bgHigh).lerp(PALETTE.bgLow, depth);
-        renderer.setClearColor(bg);
         renderer.render(scene, camera);
         onFrame?.(depth);
     };
