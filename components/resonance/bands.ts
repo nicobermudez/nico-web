@@ -55,8 +55,8 @@ export const BANDS: Band[] = [
         to: 0.75,
         hz: 136.1,
         tone: "Earth year · Om",
-        lines: ["The space", "between sounds."],
-        detail: "I shape frequencies through sound meditations and music production.",
+        lines: ["I love sitting in the space", "between sound."],
+        detail: "Sometimes in meditation, sometimes in the studio.",
         links: [{ label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" }],
     },
     {
