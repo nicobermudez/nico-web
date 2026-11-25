@@ -66,7 +66,7 @@ export const BANDS: Band[] = [
         hz: 68.05,
         tone: "Earth year · octave below",
         lines: ["Everything vibrates."],
-        detail: "If you're into music, technology or the cosmos, drop me a note.",
+        detail: "If you're into sound, tech, or exploring our existence, drop me a note.",
         links: [{ label: "bermnicolas@gmail.com", href: "mailto:bermnicolas@gmail.com" }],
     },
 ];
