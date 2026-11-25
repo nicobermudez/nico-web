@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { JungleAudio } from "./audio";
-import { BANDS, bandIndexAt, depthToHz } from "./bands";
+import { BANDS, bandIndexAt, depthToHz, formatHz } from "./bands";
 import type { SceneHandle } from "./scene";
 import styles from "./Resonance.module.css";
 
@@ -22,7 +22,7 @@ export const Resonance: React.FC = () => {
 
     // Reflect the scene's eased depth in the overlay without re-rendering React every frame.
     const showDepth = (d: number) => {
-        if (hzRef.current) hzRef.current.textContent = `${Math.round(depthToHz(d))} Hz`;
+        if (hzRef.current) hzRef.current.textContent = `${formatHz(depthToHz(d))} Hz`;
         if (markerRef.current) markerRef.current.style.top = `${d * 100}%`;
         const i = bandIndexAt(d);
         if (i !== bandRef.current) {
@@ -104,7 +104,12 @@ export const Resonance: React.FC = () => {
                             key={b.name}
                             className={`${styles.band} ${i === band ? styles.active : ""}`}
                         >
-                            <p className={styles.bandName}>{b.name}</p>
+                            <p className={styles.bandName}>
+                                {b.name}
+                                <span className={styles.tone}>
+                                    {b.tone} · {formatHz(b.hz)} Hz
+                                </span>
+                            </p>
                             {b.lines.map((line) =>
                                 i === 0 ? (
                                     <h1 key={line} className={styles.line}>
@@ -131,7 +136,7 @@ export const Resonance: React.FC = () => {
                         ))}
                         <div ref={markerRef} className={styles.marker}>
                             <span ref={hzRef} className={styles.hz}>
-                                440 Hz
+                                432 Hz
                             </span>
                         </div>
                     </div>

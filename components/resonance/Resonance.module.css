@@ -94,6 +94,13 @@
     text-shadow: 0 0 40px rgba(10, 18, 12, 0.9);
 }
 
+.tone {
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 0.2em;
+    color: rgba(239, 231, 214, 0.45);
+}
+
 /* --- Frequency meter ---------------------------------------------------- */
 
 .meter {
