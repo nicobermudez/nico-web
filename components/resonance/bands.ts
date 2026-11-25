@@ -42,7 +42,7 @@ export const BANDS: Band[] = [
         hz: 210.42,
         tone: "Moon",
         lines: ["Born in Colombia,", "living in Switzerland."],
-        detail: "I build technology that connects people through travel.",
+        detail: "I build technology that connects people.",
         links: [
             { label: "EF World Journeys", href: "https://www.efworldjourneys.com/" },
             { label: "GitHub", href: "https://github.com/nicobermudez" },
