@@ -1,13 +1,11 @@
 "use client";
-import { About, Email, Intro, Links } from "@app/components";
-import { useRef } from "react";
+import { About, Email, Links, Resonance } from "@app/components";
 
 export default function Home() {
-    const aboutRef = useRef<HTMLDivElement>(null);
     return (
         <div>
-            <Intro aboutRef={aboutRef} />
-            <About ref={aboutRef} />
+            <Resonance />
+            <About />
             <Links />
             <Email />
         </div>

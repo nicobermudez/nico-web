@@ -14,7 +14,7 @@ export default {
                     contrast: "#3D5A80",
                 },
                 surfaces: {
-                    default: "#16181d",
+                    default: "#120b07",
                     secondary: "#ffffff",
                 },
             },
