@@ -1,10 +1,43 @@
 import { depthToHz } from "./bands";
 
+type AudioSessionNavigator = Navigator & {
+    audioSession?: { type: string };
+};
+
+// A short silent WAV. Playing it through an <audio> element inside the tap
+// moves iOS into its media playback category, so the silent switch no longer
+// mutes Web Audio. Only needed on iOS versions without navigator.audioSession.
+const silentWavUrl = () => {
+    const sampleRate = 8000;
+    const samples = 800;
+    const buffer = new ArrayBuffer(44 + samples * 2);
+    const view = new DataView(buffer);
+    const write = (offset: number, text: string) =>
+        [...text].forEach((c, i) => view.setUint8(offset + i, c.charCodeAt(0)));
+    write(0, "RIFF");
+    view.setUint32(4, 36 + samples * 2, true);
+    write(8, "WAVE");
+    write(12, "fmt ");
+    view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true);
+    view.setUint16(22, 1, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, sampleRate * 2, true);
+    view.setUint16(32, 2, true);
+    view.setUint16(34, 16, true);
+    write(36, "data");
+    view.setUint32(40, samples * 2, true);
+    return URL.createObjectURL(new Blob([buffer], { type: "audio/wav" }));
+};
+
 // A small generative soundscape that follows the scene's depth:
 // rain in the canopy, a beating drone tuned to the current frequency,
 // and a low river rumble near the roots. Started only by a user gesture.
 export class JungleAudio {
     private ctx: AudioContext | null = null;
+    private unlockEl: HTMLAudioElement | null = null;
+    private overtone2!: OscillatorNode;
+    private overtone3!: OscillatorNode;
     private master!: GainNode;
     private filter!: BiquadFilterNode;
     private drone!: OscillatorNode;
@@ -20,7 +53,10 @@ export class JungleAudio {
         return this.ctx?.state === "running";
     }
 
+    // Must be called synchronously from the tap: iOS only allows audio to
+    // start inside the gesture itself.
     async start(depth: number) {
+        this.unlockIOS();
         if (!this.ctx) this.build();
         const ctx = this.ctx!;
         await ctx.resume();
@@ -35,7 +71,34 @@ export class JungleAudio {
         this.master.gain.cancelScheduledValues(ctx.currentTime);
         this.master.gain.setTargetAtTime(0, ctx.currentTime, 0.25);
         await new Promise((r) => setTimeout(r, 900));
-        if (this.master.gain.value < 0.01) await ctx.suspend();
+        if (this.master.gain.value < 0.01) {
+            await ctx.suspend();
+            this.unlockEl?.pause();
+        }
+    }
+
+    // iOS can suspend audio when the page is backgrounded; try to resume.
+    resumeIfInterrupted() {
+        if (this.ctx && this.ctx.state !== "running") {
+            this.unlockEl?.play().catch(() => {});
+            this.ctx.resume().catch(() => {});
+        }
+    }
+
+    private unlockIOS() {
+        const nav = navigator as AudioSessionNavigator;
+        if (nav.audioSession) {
+            try {
+                nav.audioSession.type = "playback";
+            } catch {}
+            return;
+        }
+        if (!this.unlockEl) {
+            this.unlockEl = new Audio(silentWavUrl());
+            this.unlockEl.loop = true;
+            this.unlockEl.setAttribute("playsinline", "");
+        }
+        this.unlockEl.play().catch(() => {});
     }
 
     setDepth(depth: number, immediate = false) {
@@ -49,6 +112,9 @@ export class JungleAudio {
         // A slight detune makes the two tones beat against each other.
         this.droneBeat.frequency.setTargetAtTime(f * 1.004, t, tc);
         this.fifth.frequency.setTargetAtTime(f * 1.5, t, tc);
+        // Natural overtones carry the low tones on small speakers.
+        this.overtone2.frequency.setTargetAtTime(f * 2, t, tc);
+        this.overtone3.frequency.setTargetAtTime(f * 3, t, tc);
         this.sub.frequency.setTargetAtTime(f / 2, t, tc);
 
         this.filter.frequency.setTargetAtTime(
@@ -108,10 +174,19 @@ export class JungleAudio {
     dispose() {
         this.ctx?.close();
         this.ctx = null;
+        if (this.unlockEl) {
+            this.unlockEl.pause();
+            URL.revokeObjectURL(this.unlockEl.src);
+            this.unlockEl = null;
+        }
     }
 
     private build() {
-        const ctx = new AudioContext();
+        const Ctx =
+            window.AudioContext ??
+            (window as unknown as { webkitAudioContext: typeof AudioContext })
+                .webkitAudioContext;
+        const ctx = new Ctx();
         this.ctx = ctx;
 
         this.master = ctx.createGain();
@@ -136,6 +211,8 @@ export class JungleAudio {
         this.drone = tone("sine", 0.1).osc;
         this.droneBeat = tone("sine", 0.08).osc;
         this.fifth = tone("triangle", 0.025).osc;
+        this.overtone2 = tone("sine", 0.05).osc;
+        this.overtone3 = tone("sine", 0.025).osc;
         const sub = tone("sine", 0);
         this.sub = sub.osc;
         this.subGain = sub.g;

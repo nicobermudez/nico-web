@@ -15,6 +15,7 @@ export const Resonance: React.FC = () => {
     const audioRef = useRef<JungleAudio | null>(null);
     const depthRef = useRef(0);
     const bandRef = useRef(0);
+    const soundOnRef = useRef(false);
 
     const [band, setBand] = useState(0);
     const [soundOn, setSoundOn] = useState(false);
@@ -49,6 +50,12 @@ export const Resonance: React.FC = () => {
             if (!sceneRef.current) showDepth(d);
         };
 
+        const onVisible = () => {
+            if (document.visibilityState === "visible" && soundOnRef.current) {
+                audioRef.current?.resumeIfInterrupted();
+            }
+        };
+
         import("./scene")
             .then(({ createScene }) => {
                 if (disposed || !canvasRef.current) return;
@@ -62,11 +69,13 @@ export const Resonance: React.FC = () => {
             .catch(() => setWebglFailed(true));
 
         window.addEventListener("scroll", readScroll, { passive: true });
+        document.addEventListener("visibilitychange", onVisible);
         readScroll();
 
         return () => {
             disposed = true;
             window.removeEventListener("scroll", readScroll);
+            document.removeEventListener("visibilitychange", onVisible);
             sceneRef.current?.dispose();
             sceneRef.current = null;
             audioRef.current?.dispose();
@@ -74,19 +83,18 @@ export const Resonance: React.FC = () => {
         };
     }, []);
 
-    const toggleSound = async () => {
+    // Kept synchronous up to start(): iOS only unlocks audio inside the tap itself.
+    const toggleSound = () => {
         if (!audioRef.current) audioRef.current = new JungleAudio();
-        if (soundOn) {
-            setSoundOn(false);
-            await audioRef.current.stop();
-        } else {
-            setSoundOn(true);
-            await audioRef.current.start(depthRef.current);
-        }
+        const next = !soundOnRef.current;
+        soundOnRef.current = next;
+        setSoundOn(next);
+        if (next) audioRef.current.start(depthRef.current);
+        else audioRef.current.stop();
     };
 
     return (
-        <section
+        <main
             ref={sectionRef}
             className={styles.section}
             aria-label="Hola. Scroll to descend from the canopy to the roots."
@@ -98,11 +106,15 @@ export const Resonance: React.FC = () => {
                     aria-hidden="true"
                 />
 
+                <p className={styles.mark}>Nico Bermudez</p>
+
                 <div className={styles.bands}>
                     {BANDS.map((b, i) => (
-                        <div
+                        <section
                             key={b.name}
                             className={`${styles.band} ${i === band ? styles.active : ""}`}
+                            // Hidden layers can't be tabbed into; scrolling brings them back.
+                            inert={i !== band}
                         >
                             <p className={styles.bandName}>
                                 {b.name}
@@ -110,18 +122,40 @@ export const Resonance: React.FC = () => {
                                     {b.tone} · {formatHz(b.hz)} Hz
                                 </span>
                             </p>
-                            {b.lines.map((line) =>
-                                i === 0 ? (
-                                    <h1 key={line} className={styles.line}>
-                                        {line}
-                                    </h1>
-                                ) : (
-                                    <p key={line} className={styles.line}>
-                                        {line}
-                                    </p>
-                                )
+                            {i === 0 ? (
+                                <h1 className={styles.lines}>
+                                    {b.lines.map((line) => (
+                                        <span key={line}>{line}</span>
+                                    ))}
+                                </h1>
+                            ) : (
+                                <h2 className={styles.lines}>
+                                    {b.lines.map((line) => (
+                                        <span key={line}>{line}</span>
+                                    ))}
+                                </h2>
                             )}
-                        </div>
+                            {b.detail && <p className={styles.detail}>{b.detail}</p>}
+                            {b.links && (
+                                <ul className={styles.links}>
+                                    {b.links.map((link) => (
+                                        <li key={link.href}>
+                                            <a
+                                                href={link.href}
+                                                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                                                rel="noreferrer"
+                                                className={styles.link}
+                                            >
+                                                {link.label}
+                                                {!link.href.startsWith("mailto:") && (
+                                                    <span aria-hidden="true"> ↗</span>
+                                                )}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </section>
                     ))}
                 </div>
 
@@ -152,10 +186,10 @@ export const Resonance: React.FC = () => {
                     {soundOn ? "Sound on" : "Sound off"}
                 </button>
 
-                <p className={styles.hint}>
+                <p className={`${styles.hint} ${band > 0 ? styles.hintGone : ""}`}>
                     Scroll to descend · Tap the field to make it ring
                 </p>
             </div>
-        </section>
+        </main>
     );
 };

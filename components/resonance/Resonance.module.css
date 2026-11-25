@@ -39,7 +39,7 @@
     display: grid;
     place-items: center;
     pointer-events: none;
-    padding: 0 16px;
+    padding: 0 clamp(24px, 8vw, 6rem);
 }
 
 /* A soft pool of darkness so the grains never cut through the words. */
@@ -49,7 +49,7 @@
     left: 50%;
     top: 50%;
     width: min(110vw, 1100px);
-    height: 60vh;
+    height: 75vh;
     transform: translate(-50%, -50%);
     background: radial-gradient(
         ellipse at center,
@@ -70,6 +70,7 @@
 }
 
 .active {
+    pointer-events: auto;
     opacity: 1;
     transform: none;
     filter: none;
@@ -84,7 +85,7 @@
     margin-bottom: 1.25rem;
 }
 
-.line {
+.lines {
     font-family: var(--font-geist-sans), sans-serif;
     font-weight: 300;
     font-size: clamp(1.6rem, 5.5vw, 4rem);
@@ -92,6 +93,69 @@
     letter-spacing: -0.01em;
     color: #efe7d6;
     text-shadow: 0 0 40px rgba(10, 18, 12, 0.9);
+}
+
+.lines span {
+    display: block;
+}
+
+/* The quieter layer of each band: context, then where to go next. */
+.detail {
+    max-width: 30rem;
+    margin: 1.75rem auto 0;
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    line-height: 1.6;
+    color: rgba(239, 231, 214, 0.7);
+    text-shadow: 0 0 24px rgba(10, 9, 6, 0.95);
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.75rem;
+    margin-top: 1.75rem;
+    list-style: none;
+    padding: 0;
+}
+
+.link {
+    display: inline-block;
+    padding: 0.4rem 0;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #efe7d6;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 167, 122, 0.45);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    color: #ffd27a;
+    border-color: #ffd27a;
+}
+
+.mark {
+    position: absolute;
+    top: 2rem;
+    left: clamp(16px, 4vw, 4rem);
+    margin: 0;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(239, 231, 214, 0.75);
+    line-height: 2.4rem;
+}
+
+@media (min-width: 768px) {
+    .mark {
+        top: 4rem;
+    }
 }
 
 .tone {
@@ -178,16 +242,6 @@
     z-index: 3;
 }
 
-/* On phones the links own the top edge, so the toggle sits above the hint. */
-@media (max-width: 767px) {
-    .sound {
-        top: auto;
-        bottom: 5.5rem;
-        right: 50%;
-        transform: translateX(50%);
-    }
-}
-
 @media (min-width: 768px) {
     .sound {
         top: 4rem;
@@ -231,10 +285,23 @@
     color: rgba(239, 231, 214, 0.55);
     pointer-events: none;
     padding: 0 16px;
+    transition: opacity 0.9s ease;
+}
+
+.hintGone {
+    opacity: 0;
+}
+
+/* On phones the meter is a quiet line; each band already names its tone. */
+@media (max-width: 767px) {
+    .hz {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .band,
+    .hint,
     .sound {
         transition: none;
     }

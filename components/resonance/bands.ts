@@ -4,6 +4,15 @@
 // raised by whole octaves until it becomes audible. The Earth year gives
 // C# = 136.10 Hz, which places A at 432 Hz. Each band holds one of these
 // tones, and depth glides between them only near band edges.
+//
+// Content descends from the public to the personal: a greeting in the
+// canopy, origins in the understory, work on the forest floor, and what
+// moves you, with the invitation to write, at the roots.
+
+export type BandLink = {
+    label: string;
+    href: string;
+};
 
 export type Band = {
     name: string;
@@ -12,6 +21,8 @@ export type Band = {
     hz: number;
     tone: string;
     lines: string[];
+    detail?: string;
+    links?: BandLink[];
 };
 
 export const BANDS: Band[] = [
@@ -37,9 +48,12 @@ export const BANDS: Band[] = [
         to: 0.75,
         hz: 136.1,
         tone: "Earth year · Om",
-        lines: [
-            "I lead teams building technology",
-            "that connects people through travel.",
+        lines: ["I lead teams building technology", "that connects people through travel."],
+        detail: "Engineering Manager at EF World Journeys.",
+        links: [
+            { label: "EF World Journeys", href: "https://www.efworldjourneys.com/" },
+            { label: "GitHub", href: "https://github.com/nicobermudez" },
+            { label: "CV", href: "https://www.linkedin.com/in/nicolasbermudezco/" },
         ],
     },
     {
@@ -49,6 +63,11 @@ export const BANDS: Band[] = [
         hz: 68.05,
         tone: "Earth year · octave below",
         lines: ["Sound, film, the cosmos.", "Everything vibrates."],
+        detail: "By night I DJ, produce, and shoot on film. If you're into music, technology or the cosmos, drop me a note.",
+        links: [
+            { label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" },
+            { label: "bermnicolas@gmail.com", href: "mailto:bermnicolas@gmail.com" },
+        ],
     },
 ];
 
