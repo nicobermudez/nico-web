@@ -1,0 +1,305 @@
+.section {
+    position: relative;
+    height: 400vh;
+    height: 400svh;
+}
+
+.stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #0a120c;
+}
+
+.fallback {
+    background: radial-gradient(
+            ellipse at 50% 60%,
+            rgba(201, 122, 58, 0.25),
+            transparent 60%
+        ),
+        linear-gradient(#0a120c, #120b07);
+}
+
+/* --- Band text ---------------------------------------------------------- */
+
+.bands {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    padding: 0 clamp(24px, 8vw, 6rem);
+}
+
+/* A soft pool of darkness so the grains never cut through the words. */
+.bands::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(110vw, 1100px);
+    height: 75vh;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        ellipse at center,
+        rgba(10, 9, 6, 0.75) 0%,
+        rgba(10, 9, 6, 0.4) 40%,
+        transparent 70%
+    );
+}
+
+.band {
+    grid-area: 1 / 1;
+    position: relative;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(6px);
+    transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
+}
+
+.active {
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+.bandName {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #c9a77a;
+    margin-bottom: 1.25rem;
+}
+
+.lines {
+    font-family: var(--font-geist-sans), sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 5.5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #efe7d6;
+    text-shadow: 0 0 40px rgba(10, 18, 12, 0.9);
+}
+
+.lines span {
+    display: block;
+    text-wrap: balance;
+}
+
+/* The quieter layer of each band: context, then where to go next. */
+.detail {
+    max-width: 30rem;
+    margin: 1.75rem auto 0;
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    line-height: 1.6;
+    color: rgba(239, 231, 214, 0.7);
+    text-shadow: 0 0 24px rgba(10, 9, 6, 0.95);
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.75rem;
+    margin-top: 1.75rem;
+    list-style: none;
+    padding: 0;
+}
+
+.link {
+    display: inline-block;
+    padding: 0.4rem 0;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #efe7d6;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 167, 122, 0.45);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    color: #ffd27a;
+    border-color: #ffd27a;
+}
+
+.mark {
+    position: absolute;
+    top: 2rem;
+    left: clamp(16px, 4vw, 4rem);
+    margin: 0;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(239, 231, 214, 0.75);
+    line-height: 2.4rem;
+}
+
+@media (min-width: 768px) {
+    .mark {
+        top: 4rem;
+    }
+}
+
+/* --- Frequency meter ---------------------------------------------------- */
+
+.meter {
+    position: absolute;
+    right: clamp(16px, 4vw, 4rem);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40vh;
+    pointer-events: none;
+}
+
+.track {
+    position: relative;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(
+        rgba(159, 199, 160, 0.5),
+        rgba(201, 122, 58, 0.5)
+    );
+}
+
+.tick {
+    position: absolute;
+    left: -4px;
+    width: 9px;
+    height: 1px;
+    background: rgba(239, 231, 214, 0.45);
+}
+
+.marker {
+    position: absolute;
+    left: -4px;
+    width: 9px;
+    height: 9px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: #efe7d6;
+    box-shadow: 0 0 12px rgba(255, 210, 122, 0.8);
+}
+
+.hz {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #efe7d6;
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- Controls ----------------------------------------------------------- */
+
+.sound {
+    position: absolute;
+    top: 2rem;
+    right: clamp(16px, 4vw, 4rem);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid rgba(239, 231, 214, 0.3);
+    border-radius: 999px;
+    background: rgba(10, 18, 12, 0.4);
+    backdrop-filter: blur(6px);
+    color: #efe7d6;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    z-index: 3;
+}
+
+@media (min-width: 768px) {
+    .sound {
+        top: 4rem;
+    }
+}
+
+.sound:hover,
+.sound:focus-visible {
+    border-color: rgba(239, 231, 214, 0.8);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(239, 231, 214, 0.4);
+}
+
+.dotOn {
+    background: #ffd27a;
+    box-shadow: 0 0 10px #ffd27a;
+    animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2rem;
+    text-align: center;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(239, 231, 214, 0.55);
+    pointer-events: none;
+    padding: 0 16px;
+    transition: opacity 0.9s ease;
+}
+
+.hintGone {
+    opacity: 0;
+}
+
+/* On phones the meter is a quiet line; each band already names its tone. */
+@media (max-width: 767px) {
+    .hz {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .band,
+    .hint,
+    .sound {
+        transition: none;
+    }
+    .dotOn {
+        animation: none;
+    }
+}
