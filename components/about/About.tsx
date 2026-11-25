@@ -1,10 +1,9 @@
-import React, { forwardRef } from "react";
 import styles from "./About.module.css";
 import Link from "next/link";
 
-export const About = forwardRef<HTMLDivElement>((_, ref) => {
+export const About: React.FC = () => {
     return (
-        <div ref={ref} className={styles.container}>
+        <div className={styles.container}>
             I&apos;m Nico. Originally from Bogotá, Colombia, I lead and enable
             teams as an Engineering Manager at&nbsp;
             <Link
@@ -23,6 +22,4 @@ export const About = forwardRef<HTMLDivElement>((_, ref) => {
             ideas come alive.
         </div>
     );
-});
-
-About.displayName = "About";
+};
