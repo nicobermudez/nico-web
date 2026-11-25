@@ -159,13 +159,6 @@
     }
 }
 
-.tone {
-    display: block;
-    margin-top: 0.5rem;
-    letter-spacing: 0.2em;
-    color: rgba(239, 231, 214, 0.45);
-}
-
 /* --- Frequency meter ---------------------------------------------------- */
 
 .meter {

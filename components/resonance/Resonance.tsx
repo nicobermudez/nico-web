@@ -113,14 +113,13 @@ export const Resonance: React.FC = () => {
                         <section
                             key={b.name}
                             className={`${styles.band} ${i === band ? styles.active : ""}`}
+                            aria-label={b.name}
                             // Hidden layers can't be tabbed into; scrolling brings them back.
                             inert={i !== band}
                         >
                             <p className={styles.bandName}>
-                                {b.name}
-                                <span className={styles.tone}>
-                                    {b.tone} · {formatHz(b.hz)} Hz
-                                </span>
+                                {b.tone && <>{b.tone} · </>}
+                                {formatHz(b.hz)} Hz
                             </p>
                             {i === 0 ? (
                                 <h1 className={styles.lines}>

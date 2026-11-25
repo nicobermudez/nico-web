@@ -20,7 +20,8 @@ export type Band = {
     from: number;
     to: number;
     hz: number;
-    tone: string;
+    // Shown before the frequency in the label above the headline.
+    tone?: string;
     lines: string[];
     detail?: string;
     links?: BandLink[];
@@ -32,7 +33,6 @@ export const BANDS: Band[] = [
         from: 0,
         to: 0.25,
         hz: 432,
-        tone: "A",
         lines: ["Hola,", "I'm Nico."],
     },
     {
@@ -40,7 +40,6 @@ export const BANDS: Band[] = [
         from: 0.25,
         to: 0.5,
         hz: 210.42,
-        tone: "Moon",
         lines: ["Born in Colombia, living in Switzerland,", "I build technology that connects people."],
         links: [
             { label: "Code", href: "https://github.com/nicobermudez" },
@@ -52,7 +51,7 @@ export const BANDS: Band[] = [
         from: 0.5,
         to: 0.75,
         hz: 136.1,
-        tone: "Earth year · Om",
+        tone: "Om",
         lines: ["I love sitting in the space", "between sound."],
         detail: "Sometimes in meditation, sometimes in the studio.",
         links: [{ label: "SoundCloud", href: "https://soundcloud.com/nicobermudez16" }],
@@ -62,7 +61,6 @@ export const BANDS: Band[] = [
         from: 0.75,
         to: 1.0001,
         hz: 68.05,
-        tone: "Earth year · octave below",
         lines: ["Everything vibrates."],
         detail: "If you're into sound, tech, or exploring our existence, drop me a note.",
         links: [{ label: "bermnicolas@gmail.com", href: "mailto:bermnicolas@gmail.com" }],
